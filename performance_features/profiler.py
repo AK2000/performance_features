@@ -265,8 +265,8 @@ class Profiler:
 
         Run the workload on background and sample on python
         """
-        # if not self.program_args:
-        #     raise Exception("Need a program ars tor run")
+        if not self.program_args and not self.pid:
+            raise Exception("Need a program or pid to run")
 
         if sample_period < 0:
             self.__initialize()
@@ -299,8 +299,8 @@ class Profiler:
         """
         Run the program on backgroun, not sampling
         """
-        if not self.program_args:
-            raise Exception("Need a program ars tor run")
+        if not self.program_args and not self.pid:
+            raise Exception("Need a program or pid to run")
         self.__initialize()
         self.reset_events()
         self.enable_events()
@@ -315,8 +315,8 @@ class Profiler:
 
         Run the workload and sample on the c++ module blocking
         """
-        if not self.program_args:
-            raise Exception("Need a program ars tor run")
+        if not self.program_args and not self.pid:
+            raise Exception("Need a program or pid to run")
         self.__initialize()
         data = self.program.run(sample_perid=sample_period * 1e6, reset=reset_on_sample)
         aux = [list(v) for v in data]
