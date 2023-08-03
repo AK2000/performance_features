@@ -265,8 +265,8 @@ class Profiler:
 
         Run the workload on background and sample on python
         """
-        if not self.program_args:
-            raise Exception("Need a program ars tor run")
+        # if not self.program_args:
+        #     raise Exception("Need a program ars tor run")
 
         if sample_period < 0:
             self.__initialize()

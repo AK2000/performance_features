@@ -158,9 +158,11 @@ class TestProfilerMethods(unittest.TestCase):
                 process.start()
 
                 program = Profiler(
-                    pid = process.pid
+                    pid = process.pid,
                     events_groups=[["PERF_COUNT_HW_INSTRUCTIONS"]],
                 )
+
+                start_barrier.wait()
                 self.assertTrue(
                     program.run_python(sample_period=sp, reset_on_sample=res)
                 )
