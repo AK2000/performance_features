@@ -18,7 +18,7 @@ class Profiler:
     PERF_EVENT_IOC_ID = 0x80082407
     PERF_EVENT_IOC_RESET = 0x2403
 
-    def __init__(self, events_groups, program_args=None):
+    def __init__(self, events_groups, program_args=None, pid=None):
         """
         program_args : list with program name and arguments to run
         events_groups : list of list of event names, each list is a event group with event leader the first name
@@ -27,6 +27,7 @@ class Profiler:
         self.event_groups = []
         self.fd_groups = []
         self.program_args = program_args
+        self.pid = pid
         self.program = None
         self.__check_paranoid()
         self.__encode_events()
@@ -152,7 +153,10 @@ class Profiler:
         try:
             self.__destroy_events()
             # self.__kill_program()
-            self.program = workload.Workload(workload.stringVec(self.program_args))
+            if self.pid is not None:
+                self.program = workload.Workload(self.pid)
+            else:
+                self.program = workload.Workload(workload.stringVec(self.program_args))
             self.program.MAX_SIZE_GROUP = 512
             self.__create_events(self.program.pid)
             for group in self.fd_groups:

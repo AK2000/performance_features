@@ -24,6 +24,7 @@ public:
     int pid, ppid, isAlive;
 
     Workload(std::vector<std::string> args);
+    Workload(int pid);
 
     // start at background
     void start();
