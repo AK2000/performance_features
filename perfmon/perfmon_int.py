@@ -5,7 +5,6 @@
 # the SWIG interface file instead.
 
 from sys import version_info as _swig_python_version_info
-
 if _swig_python_version_info < (2, 7, 0):
     raise RuntimeError("Python 2.7 or later required")
 
@@ -20,17 +19,12 @@ try:
 except ImportError:
     import __builtin__
 
-
 def _swig_repr(self):
     try:
         strthis = "proxy of " + self.this.__repr__()
     except __builtin__.Exception:
         strthis = ""
-    return "<%s.%s; %s >" % (
-        self.__class__.__module__,
-        self.__class__.__name__,
-        strthis,
-    )
+    return "<%s.%s; %s >" % (self.__class__.__module__, self.__class__.__name__, strthis,)
 
 
 def _swig_setattr_nondynamic_instance_variable(set):
@@ -43,7 +37,6 @@ def _swig_setattr_nondynamic_instance_variable(set):
             set(self, name, value)
         else:
             raise AttributeError("You cannot add instance attributes to %s" % self)
-
     return set_instance_attr
 
 
@@ -53,22 +46,18 @@ def _swig_setattr_nondynamic_class_variable(set):
             set(cls, name, value)
         else:
             raise AttributeError("You cannot add class attributes to %s" % cls)
-
     return set_class_attr
 
 
 def _swig_add_metaclass(metaclass):
     """Class decorator for adding a metaclass to a SWIG wrapped class - a slimmed down version of six.add_metaclass"""
-
     def wrapper(cls):
         return metaclass(cls.__name__, cls.__bases__, cls.__dict__.copy())
-
     return wrapper
 
 
 class _SwigNonDynamicMeta(type):
     """Meta class to enforce nondynamic attributes (no new attributes) for a class"""
-
     __setattr__ = _swig_setattr_nondynamic_class_variable(type.__setattr__)
 
 
@@ -86,9 +75,7 @@ PERF_COUNT_HW_CACHE_MISSES = _perfmon_int.PERF_COUNT_HW_CACHE_MISSES
 PERF_COUNT_HW_BRANCH_INSTRUCTIONS = _perfmon_int.PERF_COUNT_HW_BRANCH_INSTRUCTIONS
 PERF_COUNT_HW_BRANCH_MISSES = _perfmon_int.PERF_COUNT_HW_BRANCH_MISSES
 PERF_COUNT_HW_BUS_CYCLES = _perfmon_int.PERF_COUNT_HW_BUS_CYCLES
-PERF_COUNT_HW_STALLED_CYCLES_FRONTEND = (
-    _perfmon_int.PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
-)
+PERF_COUNT_HW_STALLED_CYCLES_FRONTEND = _perfmon_int.PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
 PERF_COUNT_HW_STALLED_CYCLES_BACKEND = _perfmon_int.PERF_COUNT_HW_STALLED_CYCLES_BACKEND
 PERF_COUNT_HW_REF_CPU_CYCLES = _perfmon_int.PERF_COUNT_HW_REF_CPU_CYCLES
 PERF_COUNT_HW_MAX = _perfmon_int.PERF_COUNT_HW_MAX
@@ -140,6 +127,11 @@ PERF_SAMPLE_IDENTIFIER = _perfmon_int.PERF_SAMPLE_IDENTIFIER
 PERF_SAMPLE_TRANSACTION = _perfmon_int.PERF_SAMPLE_TRANSACTION
 PERF_SAMPLE_REGS_INTR = _perfmon_int.PERF_SAMPLE_REGS_INTR
 PERF_SAMPLE_PHYS_ADDR = _perfmon_int.PERF_SAMPLE_PHYS_ADDR
+PERF_SAMPLE_AUX = _perfmon_int.PERF_SAMPLE_AUX
+PERF_SAMPLE_CGROUP = _perfmon_int.PERF_SAMPLE_CGROUP
+PERF_SAMPLE_DATA_PAGE_SIZE = _perfmon_int.PERF_SAMPLE_DATA_PAGE_SIZE
+PERF_SAMPLE_CODE_PAGE_SIZE = _perfmon_int.PERF_SAMPLE_CODE_PAGE_SIZE
+PERF_SAMPLE_WEIGHT_STRUCT = _perfmon_int.PERF_SAMPLE_WEIGHT_STRUCT
 PERF_SAMPLE_MAX = _perfmon_int.PERF_SAMPLE_MAX
 PERF_TXN_ELISION = _perfmon_int.PERF_TXN_ELISION
 PERF_TXN_TRANSACTION = _perfmon_int.PERF_TXN_TRANSACTION
@@ -169,6 +161,7 @@ PERF_SAMPLE_BRANCH_CALL_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_CALL_SHIFT
 PERF_SAMPLE_BRANCH_NO_FLAGS_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_NO_FLAGS_SHIFT
 PERF_SAMPLE_BRANCH_NO_CYCLES_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_NO_CYCLES_SHIFT
 PERF_SAMPLE_BRANCH_TYPE_SAVE_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_TYPE_SAVE_SHIFT
+PERF_SAMPLE_BRANCH_HW_INDEX_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_HW_INDEX_SHIFT
 PERF_SAMPLE_BRANCH_MAX_SHIFT = _perfmon_int.PERF_SAMPLE_BRANCH_MAX_SHIFT
 PERF_SAMPLE_BRANCH_USER = _perfmon_int.PERF_SAMPLE_BRANCH_USER
 PERF_SAMPLE_BRANCH_KERNEL = _perfmon_int.PERF_SAMPLE_BRANCH_KERNEL
@@ -187,6 +180,7 @@ PERF_SAMPLE_BRANCH_CALL = _perfmon_int.PERF_SAMPLE_BRANCH_CALL
 PERF_SAMPLE_BRANCH_NO_FLAGS = _perfmon_int.PERF_SAMPLE_BRANCH_NO_FLAGS
 PERF_SAMPLE_BRANCH_NO_CYCLES = _perfmon_int.PERF_SAMPLE_BRANCH_NO_CYCLES
 PERF_SAMPLE_BRANCH_TYPE_SAVE = _perfmon_int.PERF_SAMPLE_BRANCH_TYPE_SAVE
+PERF_SAMPLE_BRANCH_HW_INDEX = _perfmon_int.PERF_SAMPLE_BRANCH_HW_INDEX
 PERF_SAMPLE_BRANCH_MAX = _perfmon_int.PERF_SAMPLE_BRANCH_MAX
 PERF_SAMPLE_REGS_ABI_NONE = _perfmon_int.PERF_SAMPLE_REGS_ABI_NONE
 PERF_SAMPLE_REGS_ABI_32 = _perfmon_int.PERF_SAMPLE_REGS_ABI_32
@@ -202,574 +196,256 @@ PERF_ATTR_SIZE_VER2 = _perfmon_int.PERF_ATTR_SIZE_VER2
 PERF_ATTR_SIZE_VER3 = _perfmon_int.PERF_ATTR_SIZE_VER3
 PERF_ATTR_SIZE_VER4 = _perfmon_int.PERF_ATTR_SIZE_VER4
 PERF_ATTR_SIZE_VER5 = _perfmon_int.PERF_ATTR_SIZE_VER5
-
-
+PERF_ATTR_SIZE_VER6 = _perfmon_int.PERF_ATTR_SIZE_VER6
+PERF_ATTR_SIZE_VER7 = _perfmon_int.PERF_ATTR_SIZE_VER7
 class perf_event_attr_t(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    type = property(
-        _perfmon_int.perf_event_attr_t_type_get, _perfmon_int.perf_event_attr_t_type_set
-    )
-    size = property(
-        _perfmon_int.perf_event_attr_t_size_get, _perfmon_int.perf_event_attr_t_size_set
-    )
-    config = property(
-        _perfmon_int.perf_event_attr_t_config_get,
-        _perfmon_int.perf_event_attr_t_config_set,
-    )
+    type = property(_perfmon_int.perf_event_attr_t_type_get, _perfmon_int.perf_event_attr_t_type_set)
+    size = property(_perfmon_int.perf_event_attr_t_size_get, _perfmon_int.perf_event_attr_t_size_set)
+    config = property(_perfmon_int.perf_event_attr_t_config_get, _perfmon_int.perf_event_attr_t_config_set)
     sample = property(_perfmon_int.perf_event_attr_t_sample_get)
-    sample_type = property(
-        _perfmon_int.perf_event_attr_t_sample_type_get,
-        _perfmon_int.perf_event_attr_t_sample_type_set,
-    )
-    read_format = property(
-        _perfmon_int.perf_event_attr_t_read_format_get,
-        _perfmon_int.perf_event_attr_t_read_format_set,
-    )
-    disabled = property(
-        _perfmon_int.perf_event_attr_t_disabled_get,
-        _perfmon_int.perf_event_attr_t_disabled_set,
-    )
-    inherit = property(
-        _perfmon_int.perf_event_attr_t_inherit_get,
-        _perfmon_int.perf_event_attr_t_inherit_set,
-    )
-    pinned = property(
-        _perfmon_int.perf_event_attr_t_pinned_get,
-        _perfmon_int.perf_event_attr_t_pinned_set,
-    )
-    exclusive = property(
-        _perfmon_int.perf_event_attr_t_exclusive_get,
-        _perfmon_int.perf_event_attr_t_exclusive_set,
-    )
-    exclude_user = property(
-        _perfmon_int.perf_event_attr_t_exclude_user_get,
-        _perfmon_int.perf_event_attr_t_exclude_user_set,
-    )
-    exclude_kernel = property(
-        _perfmon_int.perf_event_attr_t_exclude_kernel_get,
-        _perfmon_int.perf_event_attr_t_exclude_kernel_set,
-    )
-    exclude_hv = property(
-        _perfmon_int.perf_event_attr_t_exclude_hv_get,
-        _perfmon_int.perf_event_attr_t_exclude_hv_set,
-    )
-    exclude_idle = property(
-        _perfmon_int.perf_event_attr_t_exclude_idle_get,
-        _perfmon_int.perf_event_attr_t_exclude_idle_set,
-    )
-    mmap = property(
-        _perfmon_int.perf_event_attr_t_mmap_get, _perfmon_int.perf_event_attr_t_mmap_set
-    )
-    comm = property(
-        _perfmon_int.perf_event_attr_t_comm_get, _perfmon_int.perf_event_attr_t_comm_set
-    )
-    freq = property(
-        _perfmon_int.perf_event_attr_t_freq_get, _perfmon_int.perf_event_attr_t_freq_set
-    )
-    inherit_stat = property(
-        _perfmon_int.perf_event_attr_t_inherit_stat_get,
-        _perfmon_int.perf_event_attr_t_inherit_stat_set,
-    )
-    enable_on_exec = property(
-        _perfmon_int.perf_event_attr_t_enable_on_exec_get,
-        _perfmon_int.perf_event_attr_t_enable_on_exec_set,
-    )
-    task = property(
-        _perfmon_int.perf_event_attr_t_task_get, _perfmon_int.perf_event_attr_t_task_set
-    )
-    watermark = property(
-        _perfmon_int.perf_event_attr_t_watermark_get,
-        _perfmon_int.perf_event_attr_t_watermark_set,
-    )
-    precise_ip = property(
-        _perfmon_int.perf_event_attr_t_precise_ip_get,
-        _perfmon_int.perf_event_attr_t_precise_ip_set,
-    )
-    mmap_data = property(
-        _perfmon_int.perf_event_attr_t_mmap_data_get,
-        _perfmon_int.perf_event_attr_t_mmap_data_set,
-    )
-    sample_id_all = property(
-        _perfmon_int.perf_event_attr_t_sample_id_all_get,
-        _perfmon_int.perf_event_attr_t_sample_id_all_set,
-    )
-    exclude_host = property(
-        _perfmon_int.perf_event_attr_t_exclude_host_get,
-        _perfmon_int.perf_event_attr_t_exclude_host_set,
-    )
-    exclude_guest = property(
-        _perfmon_int.perf_event_attr_t_exclude_guest_get,
-        _perfmon_int.perf_event_attr_t_exclude_guest_set,
-    )
-    exclude_callchain_kernel = property(
-        _perfmon_int.perf_event_attr_t_exclude_callchain_kernel_get,
-        _perfmon_int.perf_event_attr_t_exclude_callchain_kernel_set,
-    )
-    exclude_callchain_user = property(
-        _perfmon_int.perf_event_attr_t_exclude_callchain_user_get,
-        _perfmon_int.perf_event_attr_t_exclude_callchain_user_set,
-    )
-    mmap2 = property(
-        _perfmon_int.perf_event_attr_t_mmap2_get,
-        _perfmon_int.perf_event_attr_t_mmap2_set,
-    )
-    comm_exec = property(
-        _perfmon_int.perf_event_attr_t_comm_exec_get,
-        _perfmon_int.perf_event_attr_t_comm_exec_set,
-    )
-    use_clockid = property(
-        _perfmon_int.perf_event_attr_t_use_clockid_get,
-        _perfmon_int.perf_event_attr_t_use_clockid_set,
-    )
-    context_switch = property(
-        _perfmon_int.perf_event_attr_t_context_switch_get,
-        _perfmon_int.perf_event_attr_t_context_switch_set,
-    )
-    write_backward = property(
-        _perfmon_int.perf_event_attr_t_write_backward_get,
-        _perfmon_int.perf_event_attr_t_write_backward_set,
-    )
-    namespaces = property(
-        _perfmon_int.perf_event_attr_t_namespaces_get,
-        _perfmon_int.perf_event_attr_t_namespaces_set,
-    )
-    __reserved_1 = property(
-        _perfmon_int.perf_event_attr_t___reserved_1_get,
-        _perfmon_int.perf_event_attr_t___reserved_1_set,
-    )
+    sample_type = property(_perfmon_int.perf_event_attr_t_sample_type_get, _perfmon_int.perf_event_attr_t_sample_type_set)
+    read_format = property(_perfmon_int.perf_event_attr_t_read_format_get, _perfmon_int.perf_event_attr_t_read_format_set)
+    disabled = property(_perfmon_int.perf_event_attr_t_disabled_get, _perfmon_int.perf_event_attr_t_disabled_set)
+    inherit = property(_perfmon_int.perf_event_attr_t_inherit_get, _perfmon_int.perf_event_attr_t_inherit_set)
+    pinned = property(_perfmon_int.perf_event_attr_t_pinned_get, _perfmon_int.perf_event_attr_t_pinned_set)
+    exclusive = property(_perfmon_int.perf_event_attr_t_exclusive_get, _perfmon_int.perf_event_attr_t_exclusive_set)
+    exclude_user = property(_perfmon_int.perf_event_attr_t_exclude_user_get, _perfmon_int.perf_event_attr_t_exclude_user_set)
+    exclude_kernel = property(_perfmon_int.perf_event_attr_t_exclude_kernel_get, _perfmon_int.perf_event_attr_t_exclude_kernel_set)
+    exclude_hv = property(_perfmon_int.perf_event_attr_t_exclude_hv_get, _perfmon_int.perf_event_attr_t_exclude_hv_set)
+    exclude_idle = property(_perfmon_int.perf_event_attr_t_exclude_idle_get, _perfmon_int.perf_event_attr_t_exclude_idle_set)
+    mmap = property(_perfmon_int.perf_event_attr_t_mmap_get, _perfmon_int.perf_event_attr_t_mmap_set)
+    comm = property(_perfmon_int.perf_event_attr_t_comm_get, _perfmon_int.perf_event_attr_t_comm_set)
+    freq = property(_perfmon_int.perf_event_attr_t_freq_get, _perfmon_int.perf_event_attr_t_freq_set)
+    inherit_stat = property(_perfmon_int.perf_event_attr_t_inherit_stat_get, _perfmon_int.perf_event_attr_t_inherit_stat_set)
+    enable_on_exec = property(_perfmon_int.perf_event_attr_t_enable_on_exec_get, _perfmon_int.perf_event_attr_t_enable_on_exec_set)
+    task = property(_perfmon_int.perf_event_attr_t_task_get, _perfmon_int.perf_event_attr_t_task_set)
+    watermark = property(_perfmon_int.perf_event_attr_t_watermark_get, _perfmon_int.perf_event_attr_t_watermark_set)
+    precise_ip = property(_perfmon_int.perf_event_attr_t_precise_ip_get, _perfmon_int.perf_event_attr_t_precise_ip_set)
+    mmap_data = property(_perfmon_int.perf_event_attr_t_mmap_data_get, _perfmon_int.perf_event_attr_t_mmap_data_set)
+    sample_id_all = property(_perfmon_int.perf_event_attr_t_sample_id_all_get, _perfmon_int.perf_event_attr_t_sample_id_all_set)
+    exclude_host = property(_perfmon_int.perf_event_attr_t_exclude_host_get, _perfmon_int.perf_event_attr_t_exclude_host_set)
+    exclude_guest = property(_perfmon_int.perf_event_attr_t_exclude_guest_get, _perfmon_int.perf_event_attr_t_exclude_guest_set)
+    exclude_callchain_kernel = property(_perfmon_int.perf_event_attr_t_exclude_callchain_kernel_get, _perfmon_int.perf_event_attr_t_exclude_callchain_kernel_set)
+    exclude_callchain_user = property(_perfmon_int.perf_event_attr_t_exclude_callchain_user_get, _perfmon_int.perf_event_attr_t_exclude_callchain_user_set)
+    mmap2 = property(_perfmon_int.perf_event_attr_t_mmap2_get, _perfmon_int.perf_event_attr_t_mmap2_set)
+    comm_exec = property(_perfmon_int.perf_event_attr_t_comm_exec_get, _perfmon_int.perf_event_attr_t_comm_exec_set)
+    use_clockid = property(_perfmon_int.perf_event_attr_t_use_clockid_get, _perfmon_int.perf_event_attr_t_use_clockid_set)
+    context_switch = property(_perfmon_int.perf_event_attr_t_context_switch_get, _perfmon_int.perf_event_attr_t_context_switch_set)
+    write_backward = property(_perfmon_int.perf_event_attr_t_write_backward_get, _perfmon_int.perf_event_attr_t_write_backward_set)
+    namespaces = property(_perfmon_int.perf_event_attr_t_namespaces_get, _perfmon_int.perf_event_attr_t_namespaces_set)
+    ksymbol = property(_perfmon_int.perf_event_attr_t_ksymbol_get, _perfmon_int.perf_event_attr_t_ksymbol_set)
+    bpf_event = property(_perfmon_int.perf_event_attr_t_bpf_event_get, _perfmon_int.perf_event_attr_t_bpf_event_set)
+    aux_output = property(_perfmon_int.perf_event_attr_t_aux_output_get, _perfmon_int.perf_event_attr_t_aux_output_set)
+    cgroup = property(_perfmon_int.perf_event_attr_t_cgroup_get, _perfmon_int.perf_event_attr_t_cgroup_set)
+    text_poke = property(_perfmon_int.perf_event_attr_t_text_poke_get, _perfmon_int.perf_event_attr_t_text_poke_set)
+    build_id = property(_perfmon_int.perf_event_attr_t_build_id_get, _perfmon_int.perf_event_attr_t_build_id_set)
+    inherit_thread = property(_perfmon_int.perf_event_attr_t_inherit_thread_get, _perfmon_int.perf_event_attr_t_inherit_thread_set)
+    remove_on_exec = property(_perfmon_int.perf_event_attr_t_remove_on_exec_get, _perfmon_int.perf_event_attr_t_remove_on_exec_set)
+    sigtrap = property(_perfmon_int.perf_event_attr_t_sigtrap_get, _perfmon_int.perf_event_attr_t_sigtrap_set)
+    __reserved_1 = property(_perfmon_int.perf_event_attr_t___reserved_1_get, _perfmon_int.perf_event_attr_t___reserved_1_set)
     wakeup = property(_perfmon_int.perf_event_attr_t_wakeup_get)
-    bp_type = property(
-        _perfmon_int.perf_event_attr_t_bp_type_get,
-        _perfmon_int.perf_event_attr_t_bp_type_set,
-    )
+    bp_type = property(_perfmon_int.perf_event_attr_t_bp_type_get, _perfmon_int.perf_event_attr_t_bp_type_set)
     bpa = property(_perfmon_int.perf_event_attr_t_bpa_get)
     bpb = property(_perfmon_int.perf_event_attr_t_bpb_get)
-    branch_sample_type = property(
-        _perfmon_int.perf_event_attr_t_branch_sample_type_get,
-        _perfmon_int.perf_event_attr_t_branch_sample_type_set,
-    )
-    sample_regs_user = property(
-        _perfmon_int.perf_event_attr_t_sample_regs_user_get,
-        _perfmon_int.perf_event_attr_t_sample_regs_user_set,
-    )
-    sample_stack_user = property(
-        _perfmon_int.perf_event_attr_t_sample_stack_user_get,
-        _perfmon_int.perf_event_attr_t_sample_stack_user_set,
-    )
-    clockid = property(
-        _perfmon_int.perf_event_attr_t_clockid_get,
-        _perfmon_int.perf_event_attr_t_clockid_set,
-    )
-    sample_regs_intr = property(
-        _perfmon_int.perf_event_attr_t_sample_regs_intr_get,
-        _perfmon_int.perf_event_attr_t_sample_regs_intr_set,
-    )
-    aux_watermark = property(
-        _perfmon_int.perf_event_attr_t_aux_watermark_get,
-        _perfmon_int.perf_event_attr_t_aux_watermark_set,
-    )
-    __reserved_2 = property(
-        _perfmon_int.perf_event_attr_t___reserved_2_get,
-        _perfmon_int.perf_event_attr_t___reserved_2_set,
-    )
+    branch_sample_type = property(_perfmon_int.perf_event_attr_t_branch_sample_type_get, _perfmon_int.perf_event_attr_t_branch_sample_type_set)
+    sample_regs_user = property(_perfmon_int.perf_event_attr_t_sample_regs_user_get, _perfmon_int.perf_event_attr_t_sample_regs_user_set)
+    sample_stack_user = property(_perfmon_int.perf_event_attr_t_sample_stack_user_get, _perfmon_int.perf_event_attr_t_sample_stack_user_set)
+    clockid = property(_perfmon_int.perf_event_attr_t_clockid_get, _perfmon_int.perf_event_attr_t_clockid_set)
+    sample_regs_intr = property(_perfmon_int.perf_event_attr_t_sample_regs_intr_get, _perfmon_int.perf_event_attr_t_sample_regs_intr_set)
+    aux_watermark = property(_perfmon_int.perf_event_attr_t_aux_watermark_get, _perfmon_int.perf_event_attr_t_aux_watermark_set)
+    sample_max_stack = property(_perfmon_int.perf_event_attr_t_sample_max_stack_get, _perfmon_int.perf_event_attr_t_sample_max_stack_set)
+    __reserved_2 = property(_perfmon_int.perf_event_attr_t___reserved_2_get, _perfmon_int.perf_event_attr_t___reserved_2_set)
+    aux_sample_size = property(_perfmon_int.perf_event_attr_t_aux_sample_size_get, _perfmon_int.perf_event_attr_t_aux_sample_size_set)
+    __reserved_3 = property(_perfmon_int.perf_event_attr_t___reserved_3_get, _perfmon_int.perf_event_attr_t___reserved_3_set)
+    sig_data = property(_perfmon_int.perf_event_attr_t_sig_data_get, _perfmon_int.perf_event_attr_t_sig_data_set)
     __swig_destroy__ = _perfmon_int.delete_perf_event_attr_t
 
     def __init__(self):
-        _perfmon_int.perf_event_attr_t_swiginit(
-            self, _perfmon_int.new_perf_event_attr_t()
-        )
-
+        _perfmon_int.perf_event_attr_t_swiginit(self, _perfmon_int.new_perf_event_attr_t())
 
 # Register perf_event_attr_t in _perfmon_int:
 _perfmon_int.perf_event_attr_t_swigregister(perf_event_attr_t)
 
-
 class perf_event_attr_bpb(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    bp_len = property(
-        _perfmon_int.perf_event_attr_bpb_bp_len_get,
-        _perfmon_int.perf_event_attr_bpb_bp_len_set,
-    )
-    config2 = property(
-        _perfmon_int.perf_event_attr_bpb_config2_get,
-        _perfmon_int.perf_event_attr_bpb_config2_set,
-    )
+    bp_len = property(_perfmon_int.perf_event_attr_bpb_bp_len_get, _perfmon_int.perf_event_attr_bpb_bp_len_set)
+    config2 = property(_perfmon_int.perf_event_attr_bpb_config2_get, _perfmon_int.perf_event_attr_bpb_config2_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_attr_bpb_swiginit(
-            self, _perfmon_int.new_perf_event_attr_bpb()
-        )
-
+        _perfmon_int.perf_event_attr_bpb_swiginit(self, _perfmon_int.new_perf_event_attr_bpb())
     __swig_destroy__ = _perfmon_int.delete_perf_event_attr_bpb
-
 
 # Register perf_event_attr_bpb in _perfmon_int:
 _perfmon_int.perf_event_attr_bpb_swigregister(perf_event_attr_bpb)
 
-
 class perf_event_attr_bpa(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    bp_addr = property(
-        _perfmon_int.perf_event_attr_bpa_bp_addr_get,
-        _perfmon_int.perf_event_attr_bpa_bp_addr_set,
-    )
-    config1 = property(
-        _perfmon_int.perf_event_attr_bpa_config1_get,
-        _perfmon_int.perf_event_attr_bpa_config1_set,
-    )
+    bp_addr = property(_perfmon_int.perf_event_attr_bpa_bp_addr_get, _perfmon_int.perf_event_attr_bpa_bp_addr_set)
+    config1 = property(_perfmon_int.perf_event_attr_bpa_config1_get, _perfmon_int.perf_event_attr_bpa_config1_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_attr_bpa_swiginit(
-            self, _perfmon_int.new_perf_event_attr_bpa()
-        )
-
+        _perfmon_int.perf_event_attr_bpa_swiginit(self, _perfmon_int.new_perf_event_attr_bpa())
     __swig_destroy__ = _perfmon_int.delete_perf_event_attr_bpa
-
 
 # Register perf_event_attr_bpa in _perfmon_int:
 _perfmon_int.perf_event_attr_bpa_swigregister(perf_event_attr_bpa)
 
-
 class perf_event_attr_wakeup(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    wakeup_events = property(
-        _perfmon_int.perf_event_attr_wakeup_wakeup_events_get,
-        _perfmon_int.perf_event_attr_wakeup_wakeup_events_set,
-    )
-    wakeup_watermark = property(
-        _perfmon_int.perf_event_attr_wakeup_wakeup_watermark_get,
-        _perfmon_int.perf_event_attr_wakeup_wakeup_watermark_set,
-    )
+    wakeup_events = property(_perfmon_int.perf_event_attr_wakeup_wakeup_events_get, _perfmon_int.perf_event_attr_wakeup_wakeup_events_set)
+    wakeup_watermark = property(_perfmon_int.perf_event_attr_wakeup_wakeup_watermark_get, _perfmon_int.perf_event_attr_wakeup_wakeup_watermark_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_attr_wakeup_swiginit(
-            self, _perfmon_int.new_perf_event_attr_wakeup()
-        )
-
+        _perfmon_int.perf_event_attr_wakeup_swiginit(self, _perfmon_int.new_perf_event_attr_wakeup())
     __swig_destroy__ = _perfmon_int.delete_perf_event_attr_wakeup
-
 
 # Register perf_event_attr_wakeup in _perfmon_int:
 _perfmon_int.perf_event_attr_wakeup_swigregister(perf_event_attr_wakeup)
 
-
 class perf_event_attr_sample(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    sample_period = property(
-        _perfmon_int.perf_event_attr_sample_sample_period_get,
-        _perfmon_int.perf_event_attr_sample_sample_period_set,
-    )
-    sample_freq = property(
-        _perfmon_int.perf_event_attr_sample_sample_freq_get,
-        _perfmon_int.perf_event_attr_sample_sample_freq_set,
-    )
+    sample_period = property(_perfmon_int.perf_event_attr_sample_sample_period_get, _perfmon_int.perf_event_attr_sample_sample_period_set)
+    sample_freq = property(_perfmon_int.perf_event_attr_sample_sample_freq_get, _perfmon_int.perf_event_attr_sample_sample_freq_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_attr_sample_swiginit(
-            self, _perfmon_int.new_perf_event_attr_sample()
-        )
-
+        _perfmon_int.perf_event_attr_sample_swiginit(self, _perfmon_int.new_perf_event_attr_sample())
     __swig_destroy__ = _perfmon_int.delete_perf_event_attr_sample
-
 
 # Register perf_event_attr_sample in _perfmon_int:
 _perfmon_int.perf_event_attr_sample_swigregister(perf_event_attr_sample)
 
-
 class perf_branch_entry(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    _from = property(
-        _perfmon_int.perf_branch_entry__from_get,
-        _perfmon_int.perf_branch_entry__from_set,
-    )
-    to = property(
-        _perfmon_int.perf_branch_entry_to_get, _perfmon_int.perf_branch_entry_to_set
-    )
-    mispred = property(
-        _perfmon_int.perf_branch_entry_mispred_get,
-        _perfmon_int.perf_branch_entry_mispred_set,
-    )
-    predicted = property(
-        _perfmon_int.perf_branch_entry_predicted_get,
-        _perfmon_int.perf_branch_entry_predicted_set,
-    )
-    in_tx = property(
-        _perfmon_int.perf_branch_entry_in_tx_get,
-        _perfmon_int.perf_branch_entry_in_tx_set,
-    )
-    abort = property(
-        _perfmon_int.perf_branch_entry_abort_get,
-        _perfmon_int.perf_branch_entry_abort_set,
-    )
-    cycles = property(
-        _perfmon_int.perf_branch_entry_cycles_get,
-        _perfmon_int.perf_branch_entry_cycles_set,
-    )
-    type = property(
-        _perfmon_int.perf_branch_entry_type_get, _perfmon_int.perf_branch_entry_type_set
-    )
-    reserved = property(
-        _perfmon_int.perf_branch_entry_reserved_get,
-        _perfmon_int.perf_branch_entry_reserved_set,
-    )
+    _from = property(_perfmon_int.perf_branch_entry__from_get, _perfmon_int.perf_branch_entry__from_set)
+    to = property(_perfmon_int.perf_branch_entry_to_get, _perfmon_int.perf_branch_entry_to_set)
+    mispred = property(_perfmon_int.perf_branch_entry_mispred_get, _perfmon_int.perf_branch_entry_mispred_set)
+    predicted = property(_perfmon_int.perf_branch_entry_predicted_get, _perfmon_int.perf_branch_entry_predicted_set)
+    in_tx = property(_perfmon_int.perf_branch_entry_in_tx_get, _perfmon_int.perf_branch_entry_in_tx_set)
+    abort = property(_perfmon_int.perf_branch_entry_abort_get, _perfmon_int.perf_branch_entry_abort_set)
+    cycles = property(_perfmon_int.perf_branch_entry_cycles_get, _perfmon_int.perf_branch_entry_cycles_set)
+    type = property(_perfmon_int.perf_branch_entry_type_get, _perfmon_int.perf_branch_entry_type_set)
+    reserved = property(_perfmon_int.perf_branch_entry_reserved_get, _perfmon_int.perf_branch_entry_reserved_set)
 
     def __init__(self):
-        _perfmon_int.perf_branch_entry_swiginit(
-            self, _perfmon_int.new_perf_branch_entry()
-        )
-
+        _perfmon_int.perf_branch_entry_swiginit(self, _perfmon_int.new_perf_branch_entry())
     __swig_destroy__ = _perfmon_int.delete_perf_branch_entry
-
 
 # Register perf_branch_entry in _perfmon_int:
 _perfmon_int.perf_branch_entry_swigregister(perf_branch_entry)
 
-
 class perf_branch_stack(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    nr = property(
-        _perfmon_int.perf_branch_stack_nr_get, _perfmon_int.perf_branch_stack_nr_set
-    )
-    entries = property(
-        _perfmon_int.perf_branch_stack_entries_get,
-        _perfmon_int.perf_branch_stack_entries_set,
-    )
+    nr = property(_perfmon_int.perf_branch_stack_nr_get, _perfmon_int.perf_branch_stack_nr_set)
+    entries = property(_perfmon_int.perf_branch_stack_entries_get, _perfmon_int.perf_branch_stack_entries_set)
 
     def __init__(self):
-        _perfmon_int.perf_branch_stack_swiginit(
-            self, _perfmon_int.new_perf_branch_stack()
-        )
-
+        _perfmon_int.perf_branch_stack_swiginit(self, _perfmon_int.new_perf_branch_stack())
     __swig_destroy__ = _perfmon_int.delete_perf_branch_stack
-
 
 # Register perf_branch_stack in _perfmon_int:
 _perfmon_int.perf_branch_stack_swigregister(perf_branch_stack)
 
-PERF_IOC_FLAG_GROUP = _perfmon_int.PERF_IOC_FLAG_GROUP
-
-
-class perf_event_mmap_page(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+class perf_event_query_bpf(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    version = property(
-        _perfmon_int.perf_event_mmap_page_version_get,
-        _perfmon_int.perf_event_mmap_page_version_set,
-    )
-    compat_version = property(
-        _perfmon_int.perf_event_mmap_page_compat_version_get,
-        _perfmon_int.perf_event_mmap_page_compat_version_set,
-    )
-    lock = property(
-        _perfmon_int.perf_event_mmap_page_lock_get,
-        _perfmon_int.perf_event_mmap_page_lock_set,
-    )
-    index = property(
-        _perfmon_int.perf_event_mmap_page_index_get,
-        _perfmon_int.perf_event_mmap_page_index_set,
-    )
-    offset = property(
-        _perfmon_int.perf_event_mmap_page_offset_get,
-        _perfmon_int.perf_event_mmap_page_offset_set,
-    )
-    time_enabled = property(
-        _perfmon_int.perf_event_mmap_page_time_enabled_get,
-        _perfmon_int.perf_event_mmap_page_time_enabled_set,
-    )
-    time_running = property(
-        _perfmon_int.perf_event_mmap_page_time_running_get,
-        _perfmon_int.perf_event_mmap_page_time_running_set,
-    )
-    rdmap_cap_u = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_get)
-    pmc_width = property(
-        _perfmon_int.perf_event_mmap_page_pmc_width_get,
-        _perfmon_int.perf_event_mmap_page_pmc_width_set,
-    )
-    time_shift = property(
-        _perfmon_int.perf_event_mmap_page_time_shift_get,
-        _perfmon_int.perf_event_mmap_page_time_shift_set,
-    )
-    time_mult = property(
-        _perfmon_int.perf_event_mmap_page_time_mult_get,
-        _perfmon_int.perf_event_mmap_page_time_mult_set,
-    )
-    time_offset = property(
-        _perfmon_int.perf_event_mmap_page_time_offset_get,
-        _perfmon_int.perf_event_mmap_page_time_offset_set,
-    )
-    time_zero = property(
-        _perfmon_int.perf_event_mmap_page_time_zero_get,
-        _perfmon_int.perf_event_mmap_page_time_zero_set,
-    )
-    size = property(
-        _perfmon_int.perf_event_mmap_page_size_get,
-        _perfmon_int.perf_event_mmap_page_size_set,
-    )
-    __reserved = property(
-        _perfmon_int.perf_event_mmap_page___reserved_get,
-        _perfmon_int.perf_event_mmap_page___reserved_set,
-    )
-    data_head = property(
-        _perfmon_int.perf_event_mmap_page_data_head_get,
-        _perfmon_int.perf_event_mmap_page_data_head_set,
-    )
-    data_tail = property(
-        _perfmon_int.perf_event_mmap_page_data_tail_get,
-        _perfmon_int.perf_event_mmap_page_data_tail_set,
-    )
-    data_offset = property(
-        _perfmon_int.perf_event_mmap_page_data_offset_get,
-        _perfmon_int.perf_event_mmap_page_data_offset_set,
-    )
-    data_size = property(
-        _perfmon_int.perf_event_mmap_page_data_size_get,
-        _perfmon_int.perf_event_mmap_page_data_size_set,
-    )
-    aux_head = property(
-        _perfmon_int.perf_event_mmap_page_aux_head_get,
-        _perfmon_int.perf_event_mmap_page_aux_head_set,
-    )
-    aux_tail = property(
-        _perfmon_int.perf_event_mmap_page_aux_tail_get,
-        _perfmon_int.perf_event_mmap_page_aux_tail_set,
-    )
-    aux_offset = property(
-        _perfmon_int.perf_event_mmap_page_aux_offset_get,
-        _perfmon_int.perf_event_mmap_page_aux_offset_set,
-    )
-    aux_size = property(
-        _perfmon_int.perf_event_mmap_page_aux_size_get,
-        _perfmon_int.perf_event_mmap_page_aux_size_set,
-    )
+    ids_len = property(_perfmon_int.perf_event_query_bpf_ids_len_get, _perfmon_int.perf_event_query_bpf_ids_len_set)
+    prog_cnt = property(_perfmon_int.perf_event_query_bpf_prog_cnt_get, _perfmon_int.perf_event_query_bpf_prog_cnt_set)
+    ids = property(_perfmon_int.perf_event_query_bpf_ids_get, _perfmon_int.perf_event_query_bpf_ids_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_mmap_page_swiginit(
-            self, _perfmon_int.new_perf_event_mmap_page()
-        )
+        _perfmon_int.perf_event_query_bpf_swiginit(self, _perfmon_int.new_perf_event_query_bpf())
+    __swig_destroy__ = _perfmon_int.delete_perf_event_query_bpf
 
+# Register perf_event_query_bpf in _perfmon_int:
+_perfmon_int.perf_event_query_bpf_swigregister(perf_event_query_bpf)
+
+PERF_IOC_FLAG_GROUP = _perfmon_int.PERF_IOC_FLAG_GROUP
+class perf_event_mmap_page(object):
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
+    __repr__ = _swig_repr
+    version = property(_perfmon_int.perf_event_mmap_page_version_get, _perfmon_int.perf_event_mmap_page_version_set)
+    compat_version = property(_perfmon_int.perf_event_mmap_page_compat_version_get, _perfmon_int.perf_event_mmap_page_compat_version_set)
+    lock = property(_perfmon_int.perf_event_mmap_page_lock_get, _perfmon_int.perf_event_mmap_page_lock_set)
+    index = property(_perfmon_int.perf_event_mmap_page_index_get, _perfmon_int.perf_event_mmap_page_index_set)
+    offset = property(_perfmon_int.perf_event_mmap_page_offset_get, _perfmon_int.perf_event_mmap_page_offset_set)
+    time_enabled = property(_perfmon_int.perf_event_mmap_page_time_enabled_get, _perfmon_int.perf_event_mmap_page_time_enabled_set)
+    time_running = property(_perfmon_int.perf_event_mmap_page_time_running_get, _perfmon_int.perf_event_mmap_page_time_running_set)
+    rdmap_cap_u = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_get)
+    pmc_width = property(_perfmon_int.perf_event_mmap_page_pmc_width_get, _perfmon_int.perf_event_mmap_page_pmc_width_set)
+    time_shift = property(_perfmon_int.perf_event_mmap_page_time_shift_get, _perfmon_int.perf_event_mmap_page_time_shift_set)
+    time_mult = property(_perfmon_int.perf_event_mmap_page_time_mult_get, _perfmon_int.perf_event_mmap_page_time_mult_set)
+    time_offset = property(_perfmon_int.perf_event_mmap_page_time_offset_get, _perfmon_int.perf_event_mmap_page_time_offset_set)
+    time_zero = property(_perfmon_int.perf_event_mmap_page_time_zero_get, _perfmon_int.perf_event_mmap_page_time_zero_set)
+    size = property(_perfmon_int.perf_event_mmap_page_size_get, _perfmon_int.perf_event_mmap_page_size_set)
+    __reserved_1 = property(_perfmon_int.perf_event_mmap_page___reserved_1_get, _perfmon_int.perf_event_mmap_page___reserved_1_set)
+    time_cycles = property(_perfmon_int.perf_event_mmap_page_time_cycles_get, _perfmon_int.perf_event_mmap_page_time_cycles_set)
+    time_mask = property(_perfmon_int.perf_event_mmap_page_time_mask_get, _perfmon_int.perf_event_mmap_page_time_mask_set)
+    __reserved = property(_perfmon_int.perf_event_mmap_page___reserved_get, _perfmon_int.perf_event_mmap_page___reserved_set)
+    data_head = property(_perfmon_int.perf_event_mmap_page_data_head_get, _perfmon_int.perf_event_mmap_page_data_head_set)
+    data_tail = property(_perfmon_int.perf_event_mmap_page_data_tail_get, _perfmon_int.perf_event_mmap_page_data_tail_set)
+    data_offset = property(_perfmon_int.perf_event_mmap_page_data_offset_get, _perfmon_int.perf_event_mmap_page_data_offset_set)
+    data_size = property(_perfmon_int.perf_event_mmap_page_data_size_get, _perfmon_int.perf_event_mmap_page_data_size_set)
+    aux_head = property(_perfmon_int.perf_event_mmap_page_aux_head_get, _perfmon_int.perf_event_mmap_page_aux_head_set)
+    aux_tail = property(_perfmon_int.perf_event_mmap_page_aux_tail_get, _perfmon_int.perf_event_mmap_page_aux_tail_set)
+    aux_offset = property(_perfmon_int.perf_event_mmap_page_aux_offset_get, _perfmon_int.perf_event_mmap_page_aux_offset_set)
+    aux_size = property(_perfmon_int.perf_event_mmap_page_aux_size_get, _perfmon_int.perf_event_mmap_page_aux_size_set)
+
+    def __init__(self):
+        _perfmon_int.perf_event_mmap_page_swiginit(self, _perfmon_int.new_perf_event_mmap_page())
     __swig_destroy__ = _perfmon_int.delete_perf_event_mmap_page
-
 
 # Register perf_event_mmap_page in _perfmon_int:
 _perfmon_int.perf_event_mmap_page_swigregister(perf_event_mmap_page)
 
-
 class perf_event_mmap_page_rdmap_cap_u(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    capabilities = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_capabilities_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_capabilities_set,
-    )
-    rdmap_cap_s = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_get
-    )
+    capabilities = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_capabilities_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_capabilities_set)
+    rdmap_cap_s = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_get)
 
     def __init__(self):
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_swiginit(
-            self, _perfmon_int.new_perf_event_mmap_page_rdmap_cap_u()
-        )
-
+        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_swiginit(self, _perfmon_int.new_perf_event_mmap_page_rdmap_cap_u())
     __swig_destroy__ = _perfmon_int.delete_perf_event_mmap_page_rdmap_cap_u
 
-
 # Register perf_event_mmap_page_rdmap_cap_u in _perfmon_int:
-_perfmon_int.perf_event_mmap_page_rdmap_cap_u_swigregister(
-    perf_event_mmap_page_rdmap_cap_u
-)
-
+_perfmon_int.perf_event_mmap_page_rdmap_cap_u_swigregister(perf_event_mmap_page_rdmap_cap_u)
 
 class perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    cap_bit0 = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_set,
-    )
-    cap_bit0_is_deprecated = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_is_deprecated_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_is_deprecated_set,
-    )
-    cap_usr_rdpmc = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_usr_rdpmc_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_usr_rdpmc_set,
-    )
-    cap_user_time = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_set,
-    )
-    cap_user_time_zero = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_zero_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_zero_set,
-    )
-    cap_____res = property(
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_____res_get,
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_____res_set,
-    )
+    cap_bit0 = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_set)
+    cap_bit0_is_deprecated = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_is_deprecated_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_bit0_is_deprecated_set)
+    cap_usr_rdpmc = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_usr_rdpmc_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_usr_rdpmc_set)
+    cap_user_time = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_set)
+    cap_user_time_zero = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_zero_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_zero_set)
+    cap_user_time_short = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_short_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_user_time_short_set)
+    cap_____res = property(_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_____res_get, _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_cap_____res_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_swiginit(
-            self, _perfmon_int.new_perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s()
-        )
-
+        _perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_swiginit(self, _perfmon_int.new_perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s())
     __swig_destroy__ = _perfmon_int.delete_perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s
 
-
 # Register perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s in _perfmon_int:
-_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_swigregister(
-    perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s
-)
-
+_perfmon_int.perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s_swigregister(perf_event_mmap_page_rdmap_cap_u_rdmap_cap_s)
 
 class perf_event_header(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    type = property(
-        _perfmon_int.perf_event_header_type_get, _perfmon_int.perf_event_header_type_set
-    )
-    misc = property(
-        _perfmon_int.perf_event_header_misc_get, _perfmon_int.perf_event_header_misc_set
-    )
-    size = property(
-        _perfmon_int.perf_event_header_size_get, _perfmon_int.perf_event_header_size_set
-    )
+    type = property(_perfmon_int.perf_event_header_type_get, _perfmon_int.perf_event_header_type_set)
+    misc = property(_perfmon_int.perf_event_header_misc_get, _perfmon_int.perf_event_header_misc_set)
+    size = property(_perfmon_int.perf_event_header_size_get, _perfmon_int.perf_event_header_size_set)
 
     def __init__(self):
-        _perfmon_int.perf_event_header_swiginit(
-            self, _perfmon_int.new_perf_event_header()
-        )
-
+        _perfmon_int.perf_event_header_swiginit(self, _perfmon_int.new_perf_event_header())
     __swig_destroy__ = _perfmon_int.delete_perf_event_header
-
 
 # Register perf_event_header in _perfmon_int:
 _perfmon_int.perf_event_header_swigregister(perf_event_header)
@@ -781,9 +457,7 @@ PERF_EVENT_MISC_USER = _perfmon_int.PERF_EVENT_MISC_USER
 PERF_EVENT_MISC_HYPERVISOR = _perfmon_int.PERF_EVENT_MISC_HYPERVISOR
 PERF_RECORD_MISC_GUEST_KERNEL = _perfmon_int.PERF_RECORD_MISC_GUEST_KERNEL
 PERF_RECORD_MISC_GUEST_USER = _perfmon_int.PERF_RECORD_MISC_GUEST_USER
-PERF_RECORD_MISC_PROC_MAP_PARSE_TIMEOUT = (
-    _perfmon_int.PERF_RECORD_MISC_PROC_MAP_PARSE_TIMEOUT
-)
+PERF_RECORD_MISC_PROC_MAP_PARSE_TIMEOUT = _perfmon_int.PERF_RECORD_MISC_PROC_MAP_PARSE_TIMEOUT
 PERF_RECORD_MISC_MMAP_DATA = _perfmon_int.PERF_RECORD_MISC_MMAP_DATA
 PERF_RECORD_MISC_COMM_EXEC = _perfmon_int.PERF_RECORD_MISC_COMM_EXEC
 PERF_RECORD_MISC_EXACT = _perfmon_int.PERF_RECORD_MISC_EXACT
@@ -805,7 +479,23 @@ PERF_RECORD_LOST_SAMPLES = _perfmon_int.PERF_RECORD_LOST_SAMPLES
 PERF_RECORD_SWITCH = _perfmon_int.PERF_RECORD_SWITCH
 PERF_RECORD_SWITCH_CPU_WIDE = _perfmon_int.PERF_RECORD_SWITCH_CPU_WIDE
 PERF_RECORD_NAMESPACES = _perfmon_int.PERF_RECORD_NAMESPACES
+PERF_RECORD_KSYMBOL = _perfmon_int.PERF_RECORD_KSYMBOL
+PERF_RECORD_BPF_EVENT = _perfmon_int.PERF_RECORD_BPF_EVENT
+PERF_RECORD_CGROUP = _perfmon_int.PERF_RECORD_CGROUP
+PERF_RECORD_TEXT_POKE = _perfmon_int.PERF_RECORD_TEXT_POKE
+PERF_RECORD_AUX_OUTPUT_HW_ID = _perfmon_int.PERF_RECORD_AUX_OUTPUT_HW_ID
 PERF_RECORD_MAX = _perfmon_int.PERF_RECORD_MAX
+PERF_RECORD_KSYMBOL_TYPE_UNKNOWN = _perfmon_int.PERF_RECORD_KSYMBOL_TYPE_UNKNOWN
+PERF_RECORD_KSYMBOL_TYPE_BPF = _perfmon_int.PERF_RECORD_KSYMBOL_TYPE_BPF
+PERF_RECORD_KSYMBOL_TYPE_OOL = _perfmon_int.PERF_RECORD_KSYMBOL_TYPE_OOL
+PERF_RECORD_KSYMBOL_TYPE_MAX = _perfmon_int.PERF_RECORD_KSYMBOL_TYPE_MAX
+PERF_RECORD_KSYMBOL_FLAGS_UNREGISTER = _perfmon_int.PERF_RECORD_KSYMBOL_FLAGS_UNREGISTER
+PERF_BPF_EVENT_UNKNOWN = _perfmon_int.PERF_BPF_EVENT_UNKNOWN
+PERF_BPF_EVENT_PROG_LOAD = _perfmon_int.PERF_BPF_EVENT_PROG_LOAD
+PERF_BPF_EVENT_PROG_UNLOAD = _perfmon_int.PERF_BPF_EVENT_PROG_UNLOAD
+PERF_BPF_EVENT_MAX = _perfmon_int.PERF_BPF_EVENT_MAX
+PERF_MAX_STACK_DEPTH = _perfmon_int.PERF_MAX_STACK_DEPTH
+PERF_MAX_CONTEXTS_PER_STACK = _perfmon_int.PERF_MAX_CONTEXTS_PER_STACK
 PERF_CONTEXT_HV = _perfmon_int.PERF_CONTEXT_HV
 PERF_CONTEXT_KERNEL = _perfmon_int.PERF_CONTEXT_KERNEL
 PERF_CONTEXT_USER = _perfmon_int.PERF_CONTEXT_USER
@@ -815,60 +505,39 @@ PERF_CONTEXT_GUEST_USER = _perfmon_int.PERF_CONTEXT_GUEST_USER
 PERF_CONTEXT_MAX = _perfmon_int.PERF_CONTEXT_MAX
 PERF_AUX_FLAG_TRUNCATED = _perfmon_int.PERF_AUX_FLAG_TRUNCATED
 PERF_AUX_FLAG_OVERWRITE = _perfmon_int.PERF_AUX_FLAG_OVERWRITE
+PERF_AUX_FLAG_PARTIAL = _perfmon_int.PERF_AUX_FLAG_PARTIAL
+PERF_AUX_FLAG_COLLISION = _perfmon_int.PERF_AUX_FLAG_COLLISION
+PERF_AUX_FLAG_PMU_FORMAT_TYPE_MASK = _perfmon_int.PERF_AUX_FLAG_PMU_FORMAT_TYPE_MASK
+PERF_AUX_FLAG_CORESIGHT_FORMAT_CORESIGHT = _perfmon_int.PERF_AUX_FLAG_CORESIGHT_FORMAT_CORESIGHT
+PERF_AUX_FLAG_CORESIGHT_FORMAT_RAW = _perfmon_int.PERF_AUX_FLAG_CORESIGHT_FORMAT_RAW
 PERF_FLAG_FD_NO_GROUP = _perfmon_int.PERF_FLAG_FD_NO_GROUP
 PERF_FLAG_FD_OUTPUT = _perfmon_int.PERF_FLAG_FD_OUTPUT
 PERF_FLAG_PID_CGROUP = _perfmon_int.PERF_FLAG_PID_CGROUP
 PERF_FLAG_FD_CLOEXEC = _perfmon_int.PERF_FLAG_FD_CLOEXEC
 
-
 def perf_event_open(hw_event_uptr, pid, cpu, group_fd, flags):
     return _perfmon_int.perf_event_open(hw_event_uptr, pid, cpu, group_fd, flags)
-
-
 PR_TASK_PERF_EVENTS_ENABLE = _perfmon_int.PR_TASK_PERF_EVENTS_ENABLE
 PR_TASK_PERF_EVENTS_DISABLE = _perfmon_int.PR_TASK_PERF_EVENTS_DISABLE
-
-
 class perf_mem_data_src(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    val = property(
-        _perfmon_int.perf_mem_data_src_val_get, _perfmon_int.perf_mem_data_src_val_set
-    )
-    mem_op = property(
-        _perfmon_int.perf_mem_data_src_mem_op_get,
-        _perfmon_int.perf_mem_data_src_mem_op_set,
-    )
-    mem_lvl = property(
-        _perfmon_int.perf_mem_data_src_mem_lvl_get,
-        _perfmon_int.perf_mem_data_src_mem_lvl_set,
-    )
-    mem_snoop = property(
-        _perfmon_int.perf_mem_data_src_mem_snoop_get,
-        _perfmon_int.perf_mem_data_src_mem_snoop_set,
-    )
-    mem_lock = property(
-        _perfmon_int.perf_mem_data_src_mem_lock_get,
-        _perfmon_int.perf_mem_data_src_mem_lock_set,
-    )
-    mem_dtlb = property(
-        _perfmon_int.perf_mem_data_src_mem_dtlb_get,
-        _perfmon_int.perf_mem_data_src_mem_dtlb_set,
-    )
-    mem_rsvd = property(
-        _perfmon_int.perf_mem_data_src_mem_rsvd_get,
-        _perfmon_int.perf_mem_data_src_mem_rsvd_set,
-    )
+    val = property(_perfmon_int.perf_mem_data_src_val_get, _perfmon_int.perf_mem_data_src_val_set)
+    mem_op = property(_perfmon_int.perf_mem_data_src_mem_op_get, _perfmon_int.perf_mem_data_src_mem_op_set)
+    mem_lvl = property(_perfmon_int.perf_mem_data_src_mem_lvl_get, _perfmon_int.perf_mem_data_src_mem_lvl_set)
+    mem_snoop = property(_perfmon_int.perf_mem_data_src_mem_snoop_get, _perfmon_int.perf_mem_data_src_mem_snoop_set)
+    mem_lock = property(_perfmon_int.perf_mem_data_src_mem_lock_get, _perfmon_int.perf_mem_data_src_mem_lock_set)
+    mem_dtlb = property(_perfmon_int.perf_mem_data_src_mem_dtlb_get, _perfmon_int.perf_mem_data_src_mem_dtlb_set)
+    mem_lvl_num = property(_perfmon_int.perf_mem_data_src_mem_lvl_num_get, _perfmon_int.perf_mem_data_src_mem_lvl_num_set)
+    mem_remote = property(_perfmon_int.perf_mem_data_src_mem_remote_get, _perfmon_int.perf_mem_data_src_mem_remote_set)
+    mem_snoopx = property(_perfmon_int.perf_mem_data_src_mem_snoopx_get, _perfmon_int.perf_mem_data_src_mem_snoopx_set)
+    mem_blk = property(_perfmon_int.perf_mem_data_src_mem_blk_get, _perfmon_int.perf_mem_data_src_mem_blk_set)
+    mem_hops = property(_perfmon_int.perf_mem_data_src_mem_hops_get, _perfmon_int.perf_mem_data_src_mem_hops_set)
+    mem_rsvd = property(_perfmon_int.perf_mem_data_src_mem_rsvd_get, _perfmon_int.perf_mem_data_src_mem_rsvd_set)
 
     def __init__(self):
-        _perfmon_int.perf_mem_data_src_swiginit(
-            self, _perfmon_int.new_perf_mem_data_src()
-        )
-
+        _perfmon_int.perf_mem_data_src_swiginit(self, _perfmon_int.new_perf_mem_data_src())
     __swig_destroy__ = _perfmon_int.delete_perf_mem_data_src
-
 
 # Register perf_mem_data_src in _perfmon_int:
 _perfmon_int.perf_mem_data_src_swigregister(perf_mem_data_src)
@@ -915,6 +584,15 @@ PERF_MEM_TLB_L2 = _perfmon_int.PERF_MEM_TLB_L2
 PERF_MEM_TLB_WK = _perfmon_int.PERF_MEM_TLB_WK
 PERF_MEM_TLB_OS = _perfmon_int.PERF_MEM_TLB_OS
 PERF_MEM_TLB_SHIFT = _perfmon_int.PERF_MEM_TLB_SHIFT
+PERF_MEM_BLK_NA = _perfmon_int.PERF_MEM_BLK_NA
+PERF_MEM_BLK_DATA = _perfmon_int.PERF_MEM_BLK_DATA
+PERF_MEM_BLK_ADDR = _perfmon_int.PERF_MEM_BLK_ADDR
+PERF_MEM_BLK_SHIFT = _perfmon_int.PERF_MEM_BLK_SHIFT
+PERF_MEM_HOPS_0 = _perfmon_int.PERF_MEM_HOPS_0
+PERF_MEM_HOPS_1 = _perfmon_int.PERF_MEM_HOPS_1
+PERF_MEM_HOPS_2 = _perfmon_int.PERF_MEM_HOPS_2
+PERF_MEM_HOPS_3 = _perfmon_int.PERF_MEM_HOPS_3
+PERF_MEM_HOPS_SHIFT = _perfmon_int.PERF_MEM_HOPS_SHIFT
 LIBPFM_VERSION = _perfmon_int.LIBPFM_VERSION
 LIBPFM_ABI_VERSION = _perfmon_int.LIBPFM_ABI_VERSION
 PFM_PLM0 = _perfmon_int.PFM_PLM0
@@ -1376,6 +1054,70 @@ PFM_PMU_AMD64_FAM19H_ZEN3 = _perfmon_int.PFM_PMU_AMD64_FAM19H_ZEN3
 PFM_PMU_AMD64_RAPL = _perfmon_int.PFM_PMU_AMD64_RAPL
 PFM_PMU_AMD64_FAM19H_ZEN3_L3 = _perfmon_int.PFM_PMU_AMD64_FAM19H_ZEN3_L3
 PFM_PMU_INTEL_ICX = _perfmon_int.PFM_PMU_INTEL_ICX
+PFM_PMU_ARM_N2 = _perfmon_int.PFM_PMU_ARM_N2
+PFM_PMU_ARM_KUNPENG = _perfmon_int.PFM_PMU_ARM_KUNPENG
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_DDRC3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_DDRC3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_DDRC3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_DDRC3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_HHA2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_HHA2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_HHA3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_HHA3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_HHA0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_HHA0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_HHA1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_HHA1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_HHA6 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_HHA6
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_HHA7 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_HHA7
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_HHA4 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_HHA4
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_HHA5 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_HHA5
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C10 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C10
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C11 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C11
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C12 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C12
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C13 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C13
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C14 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C14
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C15 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C15
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C8 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C8
+PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C9 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL1_L3C9
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C0 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C0
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C1 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C1
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C2 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C2
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C3 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C3
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C4 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C4
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C5 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C5
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C6 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C6
+PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C7 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL3_L3C7
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C24 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C24
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C25 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C25
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C26 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C26
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C27 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C27
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C28 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C28
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C29 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C29
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C30 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C30
+PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C31 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL5_L3C31
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C16 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C16
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C17 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C17
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C18 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C18
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C19 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C19
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C20 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C20
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C21 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C21
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C22 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C22
+PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C23 = _perfmon_int.PFM_PMU_ARM_KUNPENG_UNC_SCCL7_L3C23
+PFM_PMU_INTEL_SPR = _perfmon_int.PFM_PMU_INTEL_SPR
+PFM_PMU_POWER10 = _perfmon_int.PFM_PMU_POWER10
+PFM_PMU_AMD64_FAM19H_ZEN4 = _perfmon_int.PFM_PMU_AMD64_FAM19H_ZEN4
+PFM_PMU_ARM_V1 = _perfmon_int.PFM_PMU_ARM_V1
+PFM_PMU_ARM_V2 = _perfmon_int.PFM_PMU_ARM_V2
+PFM_PMU_INTEL_EMR = _perfmon_int.PFM_PMU_INTEL_EMR
 PFM_PMU_MAX = _perfmon_int.PFM_PMU_MAX
 PFM_PMU_TYPE_UNKNOWN = _perfmon_int.PFM_PMU_TYPE_UNKNOWN
 PFM_PMU_TYPE_CORE = _perfmon_int.PFM_PMU_TYPE_CORE
@@ -1404,83 +1146,38 @@ PFM_OS_NONE = _perfmon_int.PFM_OS_NONE
 PFM_OS_PERF_EVENT = _perfmon_int.PFM_OS_PERF_EVENT
 PFM_OS_PERF_EVENT_EXT = _perfmon_int.PFM_OS_PERF_EVENT_EXT
 PFM_OS_MAX = _perfmon_int.PFM_OS_MAX
-
-
 class pfm_pmu_info_t(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     __swig_destroy__ = _perfmon_int.delete_pfm_pmu_info_t
-    name = property(
-        _perfmon_int.pfm_pmu_info_t_name_get, _perfmon_int.pfm_pmu_info_t_name_set
-    )
-    desc = property(
-        _perfmon_int.pfm_pmu_info_t_desc_get, _perfmon_int.pfm_pmu_info_t_desc_set
-    )
-    size = property(
-        _perfmon_int.pfm_pmu_info_t_size_get, _perfmon_int.pfm_pmu_info_t_size_set
-    )
-    pmu = property(
-        _perfmon_int.pfm_pmu_info_t_pmu_get, _perfmon_int.pfm_pmu_info_t_pmu_set
-    )
-    type = property(
-        _perfmon_int.pfm_pmu_info_t_type_get, _perfmon_int.pfm_pmu_info_t_type_set
-    )
-    nevents = property(
-        _perfmon_int.pfm_pmu_info_t_nevents_get, _perfmon_int.pfm_pmu_info_t_nevents_set
-    )
-    first_event = property(
-        _perfmon_int.pfm_pmu_info_t_first_event_get,
-        _perfmon_int.pfm_pmu_info_t_first_event_set,
-    )
-    max_encoding = property(
-        _perfmon_int.pfm_pmu_info_t_max_encoding_get,
-        _perfmon_int.pfm_pmu_info_t_max_encoding_set,
-    )
-    num_cntrs = property(
-        _perfmon_int.pfm_pmu_info_t_num_cntrs_get,
-        _perfmon_int.pfm_pmu_info_t_num_cntrs_set,
-    )
-    num_fixed_cntrs = property(
-        _perfmon_int.pfm_pmu_info_t_num_fixed_cntrs_get,
-        _perfmon_int.pfm_pmu_info_t_num_fixed_cntrs_set,
-    )
+    name = property(_perfmon_int.pfm_pmu_info_t_name_get, _perfmon_int.pfm_pmu_info_t_name_set)
+    desc = property(_perfmon_int.pfm_pmu_info_t_desc_get, _perfmon_int.pfm_pmu_info_t_desc_set)
+    size = property(_perfmon_int.pfm_pmu_info_t_size_get, _perfmon_int.pfm_pmu_info_t_size_set)
+    pmu = property(_perfmon_int.pfm_pmu_info_t_pmu_get, _perfmon_int.pfm_pmu_info_t_pmu_set)
+    type = property(_perfmon_int.pfm_pmu_info_t_type_get, _perfmon_int.pfm_pmu_info_t_type_set)
+    nevents = property(_perfmon_int.pfm_pmu_info_t_nevents_get, _perfmon_int.pfm_pmu_info_t_nevents_set)
+    first_event = property(_perfmon_int.pfm_pmu_info_t_first_event_get, _perfmon_int.pfm_pmu_info_t_first_event_set)
+    max_encoding = property(_perfmon_int.pfm_pmu_info_t_max_encoding_get, _perfmon_int.pfm_pmu_info_t_max_encoding_set)
+    num_cntrs = property(_perfmon_int.pfm_pmu_info_t_num_cntrs_get, _perfmon_int.pfm_pmu_info_t_num_cntrs_set)
+    num_fixed_cntrs = property(_perfmon_int.pfm_pmu_info_t_num_fixed_cntrs_get, _perfmon_int.pfm_pmu_info_t_num_fixed_cntrs_set)
     flags = property(_perfmon_int.pfm_pmu_info_t_flags_get)
 
     def __init__(self):
         _perfmon_int.pfm_pmu_info_t_swiginit(self, _perfmon_int.new_pfm_pmu_info_t())
 
-
 # Register pfm_pmu_info_t in _perfmon_int:
 _perfmon_int.pfm_pmu_info_t_swigregister(pfm_pmu_info_t)
 
-
 class pfm_pmu_info_t_flags(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    is_present = property(
-        _perfmon_int.pfm_pmu_info_t_flags_is_present_get,
-        _perfmon_int.pfm_pmu_info_t_flags_is_present_set,
-    )
-    is_dfl = property(
-        _perfmon_int.pfm_pmu_info_t_flags_is_dfl_get,
-        _perfmon_int.pfm_pmu_info_t_flags_is_dfl_set,
-    )
-    reserved_bits = property(
-        _perfmon_int.pfm_pmu_info_t_flags_reserved_bits_get,
-        _perfmon_int.pfm_pmu_info_t_flags_reserved_bits_set,
-    )
+    is_present = property(_perfmon_int.pfm_pmu_info_t_flags_is_present_get, _perfmon_int.pfm_pmu_info_t_flags_is_present_set)
+    is_dfl = property(_perfmon_int.pfm_pmu_info_t_flags_is_dfl_get, _perfmon_int.pfm_pmu_info_t_flags_is_dfl_set)
+    reserved_bits = property(_perfmon_int.pfm_pmu_info_t_flags_reserved_bits_get, _perfmon_int.pfm_pmu_info_t_flags_reserved_bits_set)
 
     def __init__(self):
-        _perfmon_int.pfm_pmu_info_t_flags_swiginit(
-            self, _perfmon_int.new_pfm_pmu_info_t_flags()
-        )
-
+        _perfmon_int.pfm_pmu_info_t_flags_swiginit(self, _perfmon_int.new_pfm_pmu_info_t_flags())
     __swig_destroy__ = _perfmon_int.delete_pfm_pmu_info_t_flags
-
 
 # Register pfm_pmu_info_t_flags in _perfmon_int:
 _perfmon_int.pfm_pmu_info_t_flags_swigregister(pfm_pmu_info_t_flags)
@@ -1488,248 +1185,107 @@ _perfmon_int.pfm_pmu_info_t_flags_swigregister(pfm_pmu_info_t_flags)
 PFM_EVENT_INFO_SPEC_NA = _perfmon_int.PFM_EVENT_INFO_SPEC_NA
 PFM_EVENT_INFO_SPEC_TRUE = _perfmon_int.PFM_EVENT_INFO_SPEC_TRUE
 PFM_EVENT_INFO_SPEC_FALSE = _perfmon_int.PFM_EVENT_INFO_SPEC_FALSE
-
-
 class pfm_event_info_t(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     __swig_destroy__ = _perfmon_int.delete_pfm_event_info_t
-    name = property(
-        _perfmon_int.pfm_event_info_t_name_get, _perfmon_int.pfm_event_info_t_name_set
-    )
-    desc = property(
-        _perfmon_int.pfm_event_info_t_desc_get, _perfmon_int.pfm_event_info_t_desc_set
-    )
-    equiv = property(
-        _perfmon_int.pfm_event_info_t_equiv_get, _perfmon_int.pfm_event_info_t_equiv_set
-    )
-    size = property(
-        _perfmon_int.pfm_event_info_t_size_get, _perfmon_int.pfm_event_info_t_size_set
-    )
-    code = property(
-        _perfmon_int.pfm_event_info_t_code_get, _perfmon_int.pfm_event_info_t_code_set
-    )
-    pmu = property(
-        _perfmon_int.pfm_event_info_t_pmu_get, _perfmon_int.pfm_event_info_t_pmu_set
-    )
-    dtype = property(
-        _perfmon_int.pfm_event_info_t_dtype_get, _perfmon_int.pfm_event_info_t_dtype_set
-    )
-    idx = property(
-        _perfmon_int.pfm_event_info_t_idx_get, _perfmon_int.pfm_event_info_t_idx_set
-    )
-    nattrs = property(
-        _perfmon_int.pfm_event_info_t_nattrs_get,
-        _perfmon_int.pfm_event_info_t_nattrs_set,
-    )
-    reserved = property(
-        _perfmon_int.pfm_event_info_t_reserved_get,
-        _perfmon_int.pfm_event_info_t_reserved_set,
-    )
+    name = property(_perfmon_int.pfm_event_info_t_name_get, _perfmon_int.pfm_event_info_t_name_set)
+    desc = property(_perfmon_int.pfm_event_info_t_desc_get, _perfmon_int.pfm_event_info_t_desc_set)
+    equiv = property(_perfmon_int.pfm_event_info_t_equiv_get, _perfmon_int.pfm_event_info_t_equiv_set)
+    size = property(_perfmon_int.pfm_event_info_t_size_get, _perfmon_int.pfm_event_info_t_size_set)
+    code = property(_perfmon_int.pfm_event_info_t_code_get, _perfmon_int.pfm_event_info_t_code_set)
+    pmu = property(_perfmon_int.pfm_event_info_t_pmu_get, _perfmon_int.pfm_event_info_t_pmu_set)
+    dtype = property(_perfmon_int.pfm_event_info_t_dtype_get, _perfmon_int.pfm_event_info_t_dtype_set)
+    idx = property(_perfmon_int.pfm_event_info_t_idx_get, _perfmon_int.pfm_event_info_t_idx_set)
+    nattrs = property(_perfmon_int.pfm_event_info_t_nattrs_get, _perfmon_int.pfm_event_info_t_nattrs_set)
+    reserved = property(_perfmon_int.pfm_event_info_t_reserved_get, _perfmon_int.pfm_event_info_t_reserved_set)
     flags = property(_perfmon_int.pfm_event_info_t_flags_get)
 
     def __init__(self):
-        _perfmon_int.pfm_event_info_t_swiginit(
-            self, _perfmon_int.new_pfm_event_info_t()
-        )
-
+        _perfmon_int.pfm_event_info_t_swiginit(self, _perfmon_int.new_pfm_event_info_t())
 
 # Register pfm_event_info_t in _perfmon_int:
 _perfmon_int.pfm_event_info_t_swigregister(pfm_event_info_t)
 
-
 class pfm_event_info_t_flags(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    is_precise = property(
-        _perfmon_int.pfm_event_info_t_flags_is_precise_get,
-        _perfmon_int.pfm_event_info_t_flags_is_precise_set,
-    )
-    is_speculative = property(
-        _perfmon_int.pfm_event_info_t_flags_is_speculative_get,
-        _perfmon_int.pfm_event_info_t_flags_is_speculative_set,
-    )
-    support_hw_smpl = property(
-        _perfmon_int.pfm_event_info_t_flags_support_hw_smpl_get,
-        _perfmon_int.pfm_event_info_t_flags_support_hw_smpl_set,
-    )
-    reserved_bits = property(
-        _perfmon_int.pfm_event_info_t_flags_reserved_bits_get,
-        _perfmon_int.pfm_event_info_t_flags_reserved_bits_set,
-    )
+    is_precise = property(_perfmon_int.pfm_event_info_t_flags_is_precise_get, _perfmon_int.pfm_event_info_t_flags_is_precise_set)
+    is_speculative = property(_perfmon_int.pfm_event_info_t_flags_is_speculative_get, _perfmon_int.pfm_event_info_t_flags_is_speculative_set)
+    support_hw_smpl = property(_perfmon_int.pfm_event_info_t_flags_support_hw_smpl_get, _perfmon_int.pfm_event_info_t_flags_support_hw_smpl_set)
+    reserved_bits = property(_perfmon_int.pfm_event_info_t_flags_reserved_bits_get, _perfmon_int.pfm_event_info_t_flags_reserved_bits_set)
 
     def __init__(self):
-        _perfmon_int.pfm_event_info_t_flags_swiginit(
-            self, _perfmon_int.new_pfm_event_info_t_flags()
-        )
-
+        _perfmon_int.pfm_event_info_t_flags_swiginit(self, _perfmon_int.new_pfm_event_info_t_flags())
     __swig_destroy__ = _perfmon_int.delete_pfm_event_info_t_flags
-
 
 # Register pfm_event_info_t_flags in _perfmon_int:
 _perfmon_int.pfm_event_info_t_flags_swigregister(pfm_event_info_t_flags)
 
-
 class pfm_event_attr_info_t(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
     __swig_destroy__ = _perfmon_int.delete_pfm_event_attr_info_t
-    name = property(
-        _perfmon_int.pfm_event_attr_info_t_name_get,
-        _perfmon_int.pfm_event_attr_info_t_name_set,
-    )
-    desc = property(
-        _perfmon_int.pfm_event_attr_info_t_desc_get,
-        _perfmon_int.pfm_event_attr_info_t_desc_set,
-    )
-    equiv = property(
-        _perfmon_int.pfm_event_attr_info_t_equiv_get,
-        _perfmon_int.pfm_event_attr_info_t_equiv_set,
-    )
-    size = property(
-        _perfmon_int.pfm_event_attr_info_t_size_get,
-        _perfmon_int.pfm_event_attr_info_t_size_set,
-    )
-    code = property(
-        _perfmon_int.pfm_event_attr_info_t_code_get,
-        _perfmon_int.pfm_event_attr_info_t_code_set,
-    )
-    type = property(
-        _perfmon_int.pfm_event_attr_info_t_type_get,
-        _perfmon_int.pfm_event_attr_info_t_type_set,
-    )
-    idx = property(
-        _perfmon_int.pfm_event_attr_info_t_idx_get,
-        _perfmon_int.pfm_event_attr_info_t_idx_set,
-    )
-    ctrl = property(
-        _perfmon_int.pfm_event_attr_info_t_ctrl_get,
-        _perfmon_int.pfm_event_attr_info_t_ctrl_set,
-    )
+    name = property(_perfmon_int.pfm_event_attr_info_t_name_get, _perfmon_int.pfm_event_attr_info_t_name_set)
+    desc = property(_perfmon_int.pfm_event_attr_info_t_desc_get, _perfmon_int.pfm_event_attr_info_t_desc_set)
+    equiv = property(_perfmon_int.pfm_event_attr_info_t_equiv_get, _perfmon_int.pfm_event_attr_info_t_equiv_set)
+    size = property(_perfmon_int.pfm_event_attr_info_t_size_get, _perfmon_int.pfm_event_attr_info_t_size_set)
+    code = property(_perfmon_int.pfm_event_attr_info_t_code_get, _perfmon_int.pfm_event_attr_info_t_code_set)
+    type = property(_perfmon_int.pfm_event_attr_info_t_type_get, _perfmon_int.pfm_event_attr_info_t_type_set)
+    idx = property(_perfmon_int.pfm_event_attr_info_t_idx_get, _perfmon_int.pfm_event_attr_info_t_idx_set)
+    ctrl = property(_perfmon_int.pfm_event_attr_info_t_ctrl_get, _perfmon_int.pfm_event_attr_info_t_ctrl_set)
     flags = property(_perfmon_int.pfm_event_attr_info_t_flags_get)
     defaults = property(_perfmon_int.pfm_event_attr_info_t_defaults_get)
 
     def __init__(self):
-        _perfmon_int.pfm_event_attr_info_t_swiginit(
-            self, _perfmon_int.new_pfm_event_attr_info_t()
-        )
-
+        _perfmon_int.pfm_event_attr_info_t_swiginit(self, _perfmon_int.new_pfm_event_attr_info_t())
 
 # Register pfm_event_attr_info_t in _perfmon_int:
 _perfmon_int.pfm_event_attr_info_t_swigregister(pfm_event_attr_info_t)
 
-
 class pfm_event_attr_info_t_defaults(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    dfl_val64 = property(
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_val64_get,
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_val64_set,
-    )
-    dfl_str = property(
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_str_get,
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_str_set,
-    )
-    dfl_bool = property(
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_bool_get,
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_bool_set,
-    )
-    dfl_int = property(
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_int_get,
-        _perfmon_int.pfm_event_attr_info_t_defaults_dfl_int_set,
-    )
+    dfl_val64 = property(_perfmon_int.pfm_event_attr_info_t_defaults_dfl_val64_get, _perfmon_int.pfm_event_attr_info_t_defaults_dfl_val64_set)
+    dfl_str = property(_perfmon_int.pfm_event_attr_info_t_defaults_dfl_str_get, _perfmon_int.pfm_event_attr_info_t_defaults_dfl_str_set)
+    dfl_bool = property(_perfmon_int.pfm_event_attr_info_t_defaults_dfl_bool_get, _perfmon_int.pfm_event_attr_info_t_defaults_dfl_bool_set)
+    dfl_int = property(_perfmon_int.pfm_event_attr_info_t_defaults_dfl_int_get, _perfmon_int.pfm_event_attr_info_t_defaults_dfl_int_set)
 
     def __init__(self):
-        _perfmon_int.pfm_event_attr_info_t_defaults_swiginit(
-            self, _perfmon_int.new_pfm_event_attr_info_t_defaults()
-        )
-
+        _perfmon_int.pfm_event_attr_info_t_defaults_swiginit(self, _perfmon_int.new_pfm_event_attr_info_t_defaults())
     __swig_destroy__ = _perfmon_int.delete_pfm_event_attr_info_t_defaults
-
 
 # Register pfm_event_attr_info_t_defaults in _perfmon_int:
 _perfmon_int.pfm_event_attr_info_t_defaults_swigregister(pfm_event_attr_info_t_defaults)
 
-
 class pfm_event_attr_info_t_flags(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    is_dfl = property(
-        _perfmon_int.pfm_event_attr_info_t_flags_is_dfl_get,
-        _perfmon_int.pfm_event_attr_info_t_flags_is_dfl_set,
-    )
-    is_precise = property(
-        _perfmon_int.pfm_event_attr_info_t_flags_is_precise_get,
-        _perfmon_int.pfm_event_attr_info_t_flags_is_precise_set,
-    )
-    is_speculative = property(
-        _perfmon_int.pfm_event_attr_info_t_flags_is_speculative_get,
-        _perfmon_int.pfm_event_attr_info_t_flags_is_speculative_set,
-    )
-    support_hw_smpl = property(
-        _perfmon_int.pfm_event_attr_info_t_flags_support_hw_smpl_get,
-        _perfmon_int.pfm_event_attr_info_t_flags_support_hw_smpl_set,
-    )
-    reserved_bits = property(
-        _perfmon_int.pfm_event_attr_info_t_flags_reserved_bits_get,
-        _perfmon_int.pfm_event_attr_info_t_flags_reserved_bits_set,
-    )
+    is_dfl = property(_perfmon_int.pfm_event_attr_info_t_flags_is_dfl_get, _perfmon_int.pfm_event_attr_info_t_flags_is_dfl_set)
+    is_precise = property(_perfmon_int.pfm_event_attr_info_t_flags_is_precise_get, _perfmon_int.pfm_event_attr_info_t_flags_is_precise_set)
+    is_speculative = property(_perfmon_int.pfm_event_attr_info_t_flags_is_speculative_get, _perfmon_int.pfm_event_attr_info_t_flags_is_speculative_set)
+    support_hw_smpl = property(_perfmon_int.pfm_event_attr_info_t_flags_support_hw_smpl_get, _perfmon_int.pfm_event_attr_info_t_flags_support_hw_smpl_set)
+    reserved_bits = property(_perfmon_int.pfm_event_attr_info_t_flags_reserved_bits_get, _perfmon_int.pfm_event_attr_info_t_flags_reserved_bits_set)
 
     def __init__(self):
-        _perfmon_int.pfm_event_attr_info_t_flags_swiginit(
-            self, _perfmon_int.new_pfm_event_attr_info_t_flags()
-        )
-
+        _perfmon_int.pfm_event_attr_info_t_flags_swiginit(self, _perfmon_int.new_pfm_event_attr_info_t_flags())
     __swig_destroy__ = _perfmon_int.delete_pfm_event_attr_info_t_flags
-
 
 # Register pfm_event_attr_info_t_flags in _perfmon_int:
 _perfmon_int.pfm_event_attr_info_t_flags_swigregister(pfm_event_attr_info_t_flags)
 
-
 class pfm_pmu_encode_arg_t(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    codes = property(
-        _perfmon_int.pfm_pmu_encode_arg_t_codes_get,
-        _perfmon_int.pfm_pmu_encode_arg_t_codes_set,
-    )
-    fstr = property(
-        _perfmon_int.pfm_pmu_encode_arg_t_fstr_get,
-        _perfmon_int.pfm_pmu_encode_arg_t_fstr_set,
-    )
-    size = property(
-        _perfmon_int.pfm_pmu_encode_arg_t_size_get,
-        _perfmon_int.pfm_pmu_encode_arg_t_size_set,
-    )
-    count = property(
-        _perfmon_int.pfm_pmu_encode_arg_t_count_get,
-        _perfmon_int.pfm_pmu_encode_arg_t_count_set,
-    )
-    idx = property(
-        _perfmon_int.pfm_pmu_encode_arg_t_idx_get,
-        _perfmon_int.pfm_pmu_encode_arg_t_idx_set,
-    )
+    codes = property(_perfmon_int.pfm_pmu_encode_arg_t_codes_get, _perfmon_int.pfm_pmu_encode_arg_t_codes_set)
+    fstr = property(_perfmon_int.pfm_pmu_encode_arg_t_fstr_get, _perfmon_int.pfm_pmu_encode_arg_t_fstr_set)
+    size = property(_perfmon_int.pfm_pmu_encode_arg_t_size_get, _perfmon_int.pfm_pmu_encode_arg_t_size_set)
+    count = property(_perfmon_int.pfm_pmu_encode_arg_t_count_get, _perfmon_int.pfm_pmu_encode_arg_t_count_set)
+    idx = property(_perfmon_int.pfm_pmu_encode_arg_t_idx_get, _perfmon_int.pfm_pmu_encode_arg_t_idx_set)
 
     def __init__(self):
-        _perfmon_int.pfm_pmu_encode_arg_t_swiginit(
-            self, _perfmon_int.new_pfm_pmu_encode_arg_t()
-        )
-
+        _perfmon_int.pfm_pmu_encode_arg_t_swiginit(self, _perfmon_int.new_pfm_pmu_encode_arg_t())
     __swig_destroy__ = _perfmon_int.delete_pfm_pmu_encode_arg_t
-
 
 # Register pfm_pmu_encode_arg_t in _perfmon_int:
 _perfmon_int.pfm_pmu_encode_arg_t_swigregister(pfm_pmu_encode_arg_t)
@@ -1739,55 +1295,41 @@ PFM_EVENT_INFO_ABI0 = _perfmon_int.PFM_EVENT_INFO_ABI0
 PFM_ATTR_INFO_ABI0 = _perfmon_int.PFM_ATTR_INFO_ABI0
 PFM_RAW_ENCODE_ABI0 = _perfmon_int.PFM_RAW_ENCODE_ABI0
 
-
 def pfm_initialize():
     return _perfmon_int.pfm_initialize()
-
 
 def pfm_terminate():
     return _perfmon_int.pfm_terminate()
 
-
 def pfm_strerror(code):
     return _perfmon_int.pfm_strerror(code)
-
 
 def pfm_get_version():
     return _perfmon_int.pfm_get_version()
 
-
 def pfm_get_pmu_info(pmu):
     return _perfmon_int.pfm_get_pmu_info(pmu)
-
 
 def pfm_get_event_next(idx):
     return _perfmon_int.pfm_get_event_next(idx)
 
-
 def pfm_find_event(str):
     return _perfmon_int.pfm_find_event(str)
-
 
 def pfm_get_event_info(idx, os):
     return _perfmon_int.pfm_get_event_info(idx, os)
 
-
 def pfm_get_os_event_encoding(str, dfl_plm, os, args):
     return _perfmon_int.pfm_get_os_event_encoding(str, dfl_plm, os, args)
-
 
 def pfm_get_event_attr_info(eidx, aidx, os):
     return _perfmon_int.pfm_get_event_attr_info(eidx, aidx, os)
 
-
 def pfm_pmu_validate(pmu_id, fp):
     return _perfmon_int.pfm_pmu_validate(pmu_id, fp)
 
-
 def pfm_get_event_encoding(str, dfl_plm, fstr, idx, codes, count):
     return _perfmon_int.pfm_get_event_encoding(str, dfl_plm, fstr, idx, codes, count)
-
-
 PFM_SUCCESS = _perfmon_int.PFM_SUCCESS
 PFM_ERR_NOTSUPP = _perfmon_int.PFM_ERR_NOTSUPP
 PFM_ERR_INVAL = _perfmon_int.PFM_ERR_INVAL
@@ -1802,6 +1344,7 @@ PFM_ERR_ATTR_SET = _perfmon_int.PFM_ERR_ATTR_SET
 PFM_ERR_TOOMANY = _perfmon_int.PFM_ERR_TOOMANY
 PFM_ERR_TOOSMALL = _perfmon_int.PFM_ERR_TOOSMALL
 
-
 def pfm_get_perf_event_encoding(str, dfl_plm, fstr, idx):
     return _perfmon_int.pfm_get_perf_event_encoding(str, dfl_plm, fstr, idx)
+
+

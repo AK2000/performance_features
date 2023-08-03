@@ -5,7 +5,6 @@
 # the SWIG interface file instead.
 
 from sys import version_info as _swig_python_version_info
-
 if _swig_python_version_info < (2, 7, 0):
     raise RuntimeError("Python 2.7 or later required")
 
@@ -20,17 +19,12 @@ try:
 except ImportError:
     import __builtin__
 
-
 def _swig_repr(self):
     try:
         strthis = "proxy of " + self.this.__repr__()
     except __builtin__.Exception:
         strthis = ""
-    return "<%s.%s; %s >" % (
-        self.__class__.__module__,
-        self.__class__.__name__,
-        strthis,
-    )
+    return "<%s.%s; %s >" % (self.__class__.__module__, self.__class__.__name__, strthis,)
 
 
 def _swig_setattr_nondynamic_instance_variable(set):
@@ -43,7 +37,6 @@ def _swig_setattr_nondynamic_instance_variable(set):
             set(self, name, value)
         else:
             raise AttributeError("You cannot add instance attributes to %s" % self)
-
     return set_instance_attr
 
 
@@ -53,33 +46,26 @@ def _swig_setattr_nondynamic_class_variable(set):
             set(cls, name, value)
         else:
             raise AttributeError("You cannot add class attributes to %s" % cls)
-
     return set_class_attr
 
 
 def _swig_add_metaclass(metaclass):
     """Class decorator for adding a metaclass to a SWIG wrapped class - a slimmed down version of six.add_metaclass"""
-
     def wrapper(cls):
         return metaclass(cls.__name__, cls.__bases__, cls.__dict__.copy())
-
     return wrapper
 
 
 class _SwigNonDynamicMeta(type):
     """Meta class to enforce nondynamic attributes (no new attributes) for a class"""
-
     __setattr__ = _swig_setattr_nondynamic_class_variable(type.__setattr__)
 
 
 class SwigPyIterator(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
 
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined - class is abstract")
-
     __repr__ = _swig_repr
     __swig_destroy__ = _workload.delete_SwigPyIterator
 
@@ -130,29 +116,22 @@ class SwigPyIterator(object):
 
     def __sub__(self, *args):
         return _workload.SwigPyIterator___sub__(self, *args)
-
     def __iter__(self):
         return self
-
 
 # Register SwigPyIterator in _workload:
 _workload.SwigPyIterator_swigregister(SwigPyIterator)
 
-
 class Workload(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
-    MAX_SIZE_GROUP = property(
-        _workload.Workload_MAX_SIZE_GROUP_get, _workload.Workload_MAX_SIZE_GROUP_set
-    )
+    MAX_SIZE_GROUP = property(_workload.Workload_MAX_SIZE_GROUP_get, _workload.Workload_MAX_SIZE_GROUP_set)
     pid = property(_workload.Workload_pid_get, _workload.Workload_pid_set)
     ppid = property(_workload.Workload_ppid_get, _workload.Workload_ppid_set)
     isAlive = property(_workload.Workload_isAlive_get, _workload.Workload_isAlive_set)
 
-    def __init__(self, args):
-        _workload.Workload_swiginit(self, _workload.new_Workload(args))
+    def __init__(self, *args):
+        _workload.Workload_swiginit(self, _workload.new_Workload(*args))
 
     def start(self):
         return _workload.Workload_start(self)
@@ -166,27 +145,20 @@ class Workload(object):
     @staticmethod
     def handler(sig, si, ucontext):
         return _workload.Workload_handler(sig, si, ucontext)
-
     __swig_destroy__ = _workload.delete_Workload
-
 
 # Register Workload in _workload:
 _workload.Workload_swigregister(Workload)
 
-
 def Workload_handler(sig, si, ucontext):
     return _workload.Workload_handler(sig, si, ucontext)
 
-
 class stringVec(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def iterator(self):
         return _workload.stringVec_iterator(self)
-
     def __iter__(self):
         return self.iterator()
 
@@ -282,23 +254,17 @@ class stringVec(object):
 
     def capacity(self):
         return _workload.stringVec_capacity(self)
-
     __swig_destroy__ = _workload.delete_stringVec
-
 
 # Register stringVec in _workload:
 _workload.stringVec_swigregister(stringVec)
 
-
 class intVec(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def iterator(self):
         return _workload.intVec_iterator(self)
-
     def __iter__(self):
         return self.iterator()
 
@@ -394,23 +360,17 @@ class intVec(object):
 
     def capacity(self):
         return _workload.intVec_capacity(self)
-
     __swig_destroy__ = _workload.delete_intVec
-
 
 # Register intVec in _workload:
 _workload.intVec_swigregister(intVec)
 
-
 class int64Vec(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def iterator(self):
         return _workload.int64Vec_iterator(self)
-
     def __iter__(self):
         return self.iterator()
 
@@ -506,23 +466,17 @@ class int64Vec(object):
 
     def capacity(self):
         return _workload.int64Vec_capacity(self)
-
     __swig_destroy__ = _workload.delete_int64Vec
-
 
 # Register int64Vec in _workload:
 _workload.int64Vec_swigregister(int64Vec)
 
-
 class int64VecVec(object):
-    thisown = property(
-        lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag"
-    )
+    thisown = property(lambda x: x.this.own(), lambda x, v: x.this.own(v), doc="The membership flag")
     __repr__ = _swig_repr
 
     def iterator(self):
         return _workload.int64VecVec_iterator(self)
-
     def __iter__(self):
         return self.iterator()
 
@@ -618,9 +572,10 @@ class int64VecVec(object):
 
     def capacity(self):
         return _workload.int64VecVec_capacity(self)
-
     __swig_destroy__ = _workload.delete_int64VecVec
-
 
 # Register int64VecVec in _workload:
 _workload.int64VecVec_swigregister(int64VecVec)
+
+
+

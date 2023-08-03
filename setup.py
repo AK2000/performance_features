@@ -24,8 +24,8 @@ setuptools.setup(
             "perfmon._perfmon_int",
             sources=["perfmon/perfmon_int.i"],
             libraries=["pfm"],
-            include_dirs=["/usr/include/perfmon"],
-            swig_opts=["-I/usr/include/"],
+            include_dirs=["/home/alokvk2/.conda/envs/funcx-dev/include/perfmon"],
+            swig_opts=["-I/home/alokvk2/.conda/envs/funcx-dev/include/"],
         ),
         Extension(
             "performance_features._workload",

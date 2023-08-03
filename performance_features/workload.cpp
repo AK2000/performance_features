@@ -40,13 +40,13 @@ Workload::Workload(vector<string> args)
     sigaction(SIGUSR1, &sa, NULL);
 }
 
-Workload:Workload(int tracee)
+Workload::Workload(int tracee)
 {
     int err = ptrace(PTRACE_ATTACH, tracee);
     if(err)
         throw "Error attaching to process with ptrace";
     this->pid = tracee;
-    this->alive = 1;
+    this->isAlive = 1;
     ppid= getpid();
 
     struct sigaction sa;
