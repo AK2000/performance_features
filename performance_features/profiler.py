@@ -29,7 +29,7 @@ class Profiler:
         self.program_args = program_args
         self.pid = pid
         self.program = None
-        self.__check_paranoid()
+        #self.__check_paranoid()
         self.__encode_events()
 
     def __del__(self):
