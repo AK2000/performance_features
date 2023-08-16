@@ -159,7 +159,7 @@ class TestProfilerMethods(unittest.TestCase):
 
                 program = Profiler(
                     pid = process.pid,
-                    events_groups=[["PERF_COUNT_HW_INSTRUCTIONS"]],
+                    events_groups=[["PERF_COUNT_HW_CPU_CYCLES","PERF_COUNT_HW_CACHE_MISSES", "PERF_COUNT_HW_REF_CPU_CYCLES", "PERF_COUNT_HW_INSTRUCTIONS"]],
                 )
 
                 start_barrier.wait()

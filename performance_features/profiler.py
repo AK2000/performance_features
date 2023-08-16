@@ -95,7 +95,7 @@ class Profiler:
                 for e, e_name in zip(group[1:], group_name[1:]):
                     e.exclude_kernel = 1
                     e.exclude_hv = 1
-                    e.inherit = 1
+                    e.inherit = 0
                     e.disabled = 1
                     e.read_format = (
                         perfmon.PERF_FORMAT_GROUP
@@ -112,7 +112,7 @@ class Profiler:
                     else:
                         e.exclude_kernel = 1
                         e.exclude_hv = 1
-                        e.inherit = 1
+                        e.inherit = 0
                         e.disabled = 1
                         fd = perfmon.perf_event_open(e, pid, -1, -1, 0)
 
