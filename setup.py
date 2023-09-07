@@ -1,7 +1,7 @@
 import setuptools
 from distutils.core import Extension
 from distutils.command.build_ext import build_ext
-import urllib
+import urllib.request
 import shutil
 import subprocess
 import os
@@ -13,17 +13,18 @@ with open("README.md", "r") as fh:
 
 class cbuild_ext(build_ext):
     def run(self):
-        urllib.URLopener().retrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.13.0.tar.gz", "libpfm.tar.gz")
+        urllib.request.urlretrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.13.0.tar.gz", "libpfm.tar.gz")
         
-        extract_dir = os.path.join(self.build_lib, "libpfm4")
-        shutil.unpack_archive("libpfm.tar.gz", extract_dir=extract_dir)
+        shutil.unpack_archive("libpfm.tar.gz", extract_dir=self.build_lib)
+        extract_dir = os.path.join(self.build_lib, "libpfm-4.13.0")
         subprocess.run(["make"], cwd=extract_dir, check=True)
 
         python_dir = os.path.join(extract_dir, "python")
-        subprocess.run([sys.executable, "-m", "pip", "install", "."], )
+        subprocess.run([sys.executable, "-m", "pip", "install", "."], cwd=python_dir, check=True)
         
+        self.library_dirs.append(os.path.join(extract_dir, "lib"))
         super().run()
-        self.copy_file("perfmon/perfmon_int.py", f"{self.build_lib}/perfmon"),
+        #self.copy_file("perfmon/perfmon_int.py", f"{self.build_lib}/perfmon"),
 
 
 setuptools.setup(
