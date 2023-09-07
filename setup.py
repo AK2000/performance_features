@@ -13,18 +13,28 @@ with open("README.md", "r") as fh:
 
 class cbuild_ext(build_ext):
     def run(self):
-        urllib.request.urlretrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.13.0.tar.gz", "libpfm.tar.gz")
+        urllib.request.urlretrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.12.0.tar.gz", "libpfm.tar.gz")
         
         shutil.unpack_archive("libpfm.tar.gz", extract_dir=self.build_lib)
-        extract_dir = os.path.join(self.build_lib, "libpfm-4.13.0")
+        extract_dir = os.path.join(self.build_lib, "libpfm-4.12.0")
         subprocess.run(["make"], cwd=extract_dir, check=True)
 
         python_dir = os.path.join(extract_dir, "python")
-        subprocess.run([sys.executable, "-m", "pip", "install", "."], cwd=python_dir, check=True)
+
+        # Fix init file
+        self.copy_file("perfmon/__init__.py", os.path.join(python_dir, "src"))
+
+        # Generate python files
+        subprocess.run([sys.executable, "setup.py", "build"], cwd=python_dir, check=True)
+
+        # Install python files
+        subprocess.run([sys.executable, "setup.py", "build", "-f"], cwd=python_dir, check=True)
+        subprocess.run([sys.executable, "setup.py", "install"], cwd=python_dir, check=True)
         
         self.library_dirs.append(os.path.join(extract_dir, "lib"))
         super().run()
-        #self.copy_file("perfmon/perfmon_int.py", f"{self.build_lib}/perfmon"),
+
+        os.remove("libpfm.tar.gz")
 
 
 setuptools.setup(
@@ -33,15 +43,8 @@ setuptools.setup(
     version="0.2.6",
     packages=["performance_features"],
     package_dir={"performance_features": "performance_features"},
-    py_modules=["perfmon.perfmon_int", "performance_features.profiler"],
+    py_modules=["performance_features.profiler"],
     ext_modules=[
-        # Extension(
-        #     "perfmon._perfmon_int",
-        #     sources=["perfmon/perfmon_int.i"],
-        #     libraries=["pfm"],
-        #     include_dirs=["/home/alokvk2/.conda/envs/funcx-dev/include/perfmon"],
-        #     swig_opts=["-I/home/alokvk2/.conda/envs/funcx-dev/include/"],
-        # ),
         Extension(
             "performance_features._workload",
             sources=[
