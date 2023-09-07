@@ -1,0 +1,9 @@
+.eggs
+build
+**/*.stdout
+**/*.stderr
+**/*.egg-info
+**/__pycache__
+**/*.so
+
+performance_features/workload_wrap.cpp
