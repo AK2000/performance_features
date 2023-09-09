@@ -1,6 +1,6 @@
 import setuptools
 from distutils.core import Extension
-from distutils.command.build_ext import build_ext
+from distutils.command.build_py import build_py
 import urllib.request
 import shutil
 import subprocess
@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-class cbuild_ext(build_ext):
+class custom_build_py(build_py):
     def run(self):
         urllib.request.urlretrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.12.0.tar.gz", "libpfm.tar.gz")
         
@@ -31,18 +31,18 @@ class cbuild_ext(build_ext):
         subprocess.run([sys.executable, "setup.py", "build", "-f"], cwd=python_dir, check=True)
         subprocess.run([sys.executable, "setup.py", "install"], cwd=python_dir, check=True)
         super().run()
-        os.remove("libpfm.tar.gz")
+        # os.remove("libpfm.tar.gz")
 
 
 setuptools.setup(
-    cmdclass={"build_ext": cbuild_ext},
+    cmdclass={"build_py": custom_build_py},
     name="performance_features",
     version="0.2.6",
     packages=["performance_features"],
     package_dir={"performance_features": "performance_features"},
     py_modules=["performance_features.profiler"],
     install_requires=["pandas", "scipy"],
-    author="Alok Kamatar,
+    author="Alok Kamatar",
     author_email="alokvk2@uchicago.edu",
     description="perf event wrapper for python",
     long_description=long_description,

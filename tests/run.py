@@ -53,7 +53,8 @@ class TestProfilerMethods(unittest.TestCase):
 
                 program = Profiler(
                     pid = process.pid,
-                    events_groups=[["PERF_COUNT_HW_CACHE_MISSES"]],
+                    events_groups = [["PERF_COUNT_HW_CACHE_MISSES"]],
+                    is_child = True
                 )
 
                 start_barrier.wait()
@@ -67,6 +68,7 @@ class TestProfilerMethods(unittest.TestCase):
         program = Profiler(
             pid = pid,
             events_groups=[["PERF_COUNT_HW_CACHE_MISSES"]],
+            is_child = True
         )
 
         self.assertTrue(
