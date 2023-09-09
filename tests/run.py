@@ -139,6 +139,7 @@ class TestProfilerMethods(unittest.TestCase):
     def test_attach_to_process(self):
         import multiprocessing
         from multiprocessing import Barrier
+        import os
 
         def cpu_burn(start_barrier, seconds):
             import time
@@ -166,6 +167,19 @@ class TestProfilerMethods(unittest.TestCase):
                 self.assertTrue(
                     program.run_python(sample_period=sp, reset_on_sample=res)
                 )
+
+    @run_n(1)
+    def test_subprocess_call(self):
+        pid = os.spawnlp(os.P_NOWAIT, "python", "python", "test.py")
+        program = Profiler(
+            pid = pid,
+            events_groups=[["PERF_COUNT_HW_CACHE_MISSES"]],
+        )
+
+        self.assertTrue(
+            program.run_python(sample_period=0.1, reset_on_sample=False)
+        )
+
 
 
 
