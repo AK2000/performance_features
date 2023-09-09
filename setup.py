@@ -31,7 +31,7 @@ class custom_build_py(build_py):
         subprocess.run([sys.executable, "setup.py", "build", "-f"], cwd=python_dir, check=True)
         subprocess.run([sys.executable, "setup.py", "install"], cwd=python_dir, check=True)
         super().run()
-        # os.remove("libpfm.tar.gz")
+        os.remove("libpfm.tar.gz")
 
 
 setuptools.setup(
