@@ -17,7 +17,7 @@ class custom_build_py(build_py):
         
         shutil.unpack_archive("libpfm.tar.gz", extract_dir=self.build_lib)
         extract_dir = os.path.join(self.build_lib, "libpfm-4.12.0")
-        subprocess.run(["make"], cwd=extract_dir, check=True)
+        subprocess.run(["make", 'DBG=""'], cwd=extract_dir, check=True)
 
         python_dir = os.path.join(extract_dir, "python")
 
