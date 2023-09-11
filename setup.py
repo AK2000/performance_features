@@ -1,6 +1,6 @@
 import setuptools
 from distutils.core import Extension
-from distutils.command.build_ext import build_ext
+from distutils.command.build_py import build_py
 import urllib.request
 import shutil
 import subprocess
@@ -11,13 +11,13 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-class cbuild_ext(build_ext):
+class custom_build_py(build_py):
     def run(self):
         urllib.request.urlretrieve("https://sourceforge.net/projects/perfmon2/files/libpfm4/libpfm-4.12.0.tar.gz", "libpfm.tar.gz")
         
         shutil.unpack_archive("libpfm.tar.gz", extract_dir=self.build_lib)
         extract_dir = os.path.join(self.build_lib, "libpfm-4.12.0")
-        subprocess.run(["make"], cwd=extract_dir, check=True)
+        subprocess.run(["make", 'DBG=""'], cwd=extract_dir, check=True)
 
         python_dir = os.path.join(extract_dir, "python")
 
@@ -30,35 +30,20 @@ class cbuild_ext(build_ext):
         # Install python files
         subprocess.run([sys.executable, "setup.py", "build", "-f"], cwd=python_dir, check=True)
         subprocess.run([sys.executable, "setup.py", "install"], cwd=python_dir, check=True)
-        
-        self.library_dirs.append(os.path.join(extract_dir, "lib"))
         super().run()
-
         os.remove("libpfm.tar.gz")
 
 
 setuptools.setup(
-    cmdclass={"build_ext": cbuild_ext},
+    cmdclass={"build_py": custom_build_py},
     name="performance_features",
     version="0.2.6",
     packages=["performance_features"],
     package_dir={"performance_features": "performance_features"},
     py_modules=["performance_features.profiler"],
-    ext_modules=[
-        Extension(
-            "performance_features._workload",
-            sources=[
-                "performance_features/workload.i",
-                "performance_features/workload.cpp",
-            ],
-            libraries=["pfm"],
-            extra_compile_args=["-fopenmp", "-std=c++11"],
-            swig_opts=["-c++"],
-        ),
-    ],
     install_requires=["pandas", "scipy"],
-    author="Vitor Ramos",
-    author_email="ramos.vitor89@gmail.com",
+    author="Alok Kamatar",
+    author_email="alokvk2@uchicago.edu",
     description="perf event wrapper for python",
     long_description=long_description,
     long_description_content_type="text/markdown",

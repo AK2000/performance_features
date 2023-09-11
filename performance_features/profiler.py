@@ -6,10 +6,9 @@
         The file descriptors are passed to the workload module develop on c++ wich start the target application and sample the file descriptors
 
 """
-
-from . import workload
 import perfmon
 import time, struct, os, signal, fcntl
+import psutil
 
 
 class Profiler:
@@ -18,7 +17,7 @@ class Profiler:
     PERF_EVENT_IOC_ID = 0x80082407
     PERF_EVENT_IOC_RESET = 0x2403
 
-    def __init__(self, events_groups, program_args=None, pid=None):
+    def __init__(self, events_groups, pid, is_child=False):
         """
         program_args : list with program name and arguments to run
         events_groups : list of list of event names, each list is a event group with event leader the first name
@@ -26,9 +25,8 @@ class Profiler:
         self.event_groups_names = events_groups
         self.event_groups = []
         self.fd_groups = []
-        self.program_args = program_args
         self.pid = pid
-        self.program = None
+        self.is_child = is_child
         #self.__check_paranoid()
         self.__encode_events()
 
@@ -83,7 +81,7 @@ class Profiler:
                 e = group[0]
                 e.exclude_kernel = 1
                 e.exclude_hv = 1
-                e.inherit = 1
+                e.inherit = 0
                 e.disabled = 1
                 e.read_format = (
                     perfmon.PERF_FORMAT_GROUP | perfmon.PERF_FORMAT_TOTAL_TIME_ENABLED
@@ -130,46 +128,12 @@ class Profiler:
                 os.close(fd)
         self.fd_groups = []
 
-    def __kill_program(self):
-        """
-        Kill the workload if still alive
-        """
-        if self.program and self.program.isAlive:
-            print("Killing process", self.program.pid)
-            self.program.start()
-            os.kill(self.program.pid, signal.SIGKILL)
-            t_max = 0
-            while self.program.isAlive and t_max < 50:
-                time.sleep(0.1)
-                t_max += 1
-            if t_max >= 50:
-                raise Exception("Cant kill the program")
-
     def __initialize(self):
         """
         Prepare to run the workload
         """
-        # TODO solve the race condition
-        try:
-            self.__destroy_events()
-            # self.__kill_program()
-            if self.pid is not None:
-                self.program = workload.Workload(self.pid)
-            else:
-                self.program = workload.Workload(workload.stringVec(self.program_args))
-            self.program.MAX_SIZE_GROUP = 512
-            self.__create_events(self.program.pid)
-            for group in self.fd_groups:
-                self.program.add_events(workload.intVec([group[0]]))
-        except Exception as e:
-            # self.__kill_program()
-            # if "Error on fork" in str(e):
-            #     print(os.getpid())
-            #     exit(0)
-            # print("After")
-            raise
-        finally:
-            pass  # something really bad happen
+        self.__destroy_events()
+        self.__create_events(self.pid)
 
     def __format_data(self, data):
         """
@@ -205,12 +169,6 @@ class Profiler:
                     c += 1
             all_data.append(only_s)
         return all_data
-
-    def set_program(self, program_args):
-        """
-        Set the program args
-        """
-        self.program_args = program_args
 
     def enable_events(self):
         """
@@ -265,16 +223,13 @@ class Profiler:
 
         Run the workload on background and sample on python
         """
-        if not self.program_args and not self.pid:
-            raise Exception("Need a program or pid to run")
-
         if sample_period < 0:
             self.__initialize()
             self.reset_events()
             self.enable_events()
-            self.program.start()
+            process = psutil.Process(self.pid)
             data = []
-            while self.program.isAlive:
+            while process.is_running() and (not self.is_child or process.status() != psutil.STATUS_ZOMBIE):
                 time.sleep(0.05)
                 data.append(self.read_events())
 
@@ -283,9 +238,9 @@ class Profiler:
         self.__initialize()
         self.reset_events()
         self.enable_events()
-        self.program.start()
+        process = psutil.Process(self.pid)
         data = []
-        while self.program.isAlive:
+        while process.is_running() and (not self.is_child or process.status() != psutil.STATUS_ZOMBIE):
             time.sleep(sample_period)
             data.append(self.read_events())
             if reset_on_sample:
@@ -299,54 +254,9 @@ class Profiler:
         """
         Run the program on backgroun, not sampling
         """
-        if not self.program_args and not self.pid:
-            raise Exception("Need a program or pid to run")
         self.__initialize()
         self.reset_events()
         self.enable_events()
-        self.program.start()
-
-    def run(self, sample_period, reset_on_sample=False):
-        """
-        sample_period : float period of sampling in seconds
-        reset_on_sample : reset the counters on sampling
-
-        return: samples
-
-        Run the workload and sample on the c++ module blocking
-        """
-        if not self.program_args and not self.pid:
-            raise Exception("Need a program or pid to run")
-        self.__initialize()
-        data = self.program.run(sample_perid=sample_period * 1e6, reset=reset_on_sample)
-        aux = [list(v) for v in data]
-        return self.__format_data(aux)
-
-
-def run_program(pargs, to_monitor, n=30, sample_period=0.05, reset_on_sample=False):
-    """
-    Run the program multiple times
-    """
-    try:
-        all_data = []
-        for i in range(n):
-            program = Profiler(program_args=pargs, events_groups=to_monitor)
-            data = program.run(
-                sample_period=sample_period, reset_on_sample=reset_on_sample
-            )
-            all_data.append(data)
-    except RuntimeError as e:
-        print(e.args[0])
-    data = {
-        "n": n,
-        "sample_period": sample_period,
-        "reset_on_sample": reset_on_sample,
-        "data": all_data,
-        "to_monitor": to_monitor,
-    }
-
-    return data
-
 
 def save_data(data, name):
     """
